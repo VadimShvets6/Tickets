@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Movie Ticket Hub</string>
+    <string name="key_movies_tv_and_much_more">Movies, TV series\n and much more\n without restrictions</string>
+    <string name="key_watch_anywhere">Watch anywhere. You can cancel your subscription or ticket at any time</string>
+    <string name="key_start_watching">START WATCHING</string>
+</resources>
