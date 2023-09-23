@@ -1,17 +1,16 @@
 package com.top1shvetsvadim1.jarvis.presentation.ui.preview.items
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
+import android.widget.FrameLayout.LayoutParams
 import com.flexeiprata.novalles.annotations.BindViewHolder
 import com.flexeiprata.novalles.annotations.Instruction
 import com.flexeiprata.novalles.annotations.PrimaryTag
 import com.flexeiprata.novalles.annotations.UIModel
 import com.flexeiprata.novalles.interfaces.Instructor
-import com.top1shvetsvadim1.jarvis.common.Image
-import com.top1shvetsvadim1.jarvis.common.Text
-import com.top1shvetsvadim1.jarvis.common.getStringText
-import com.top1shvetsvadim1.jarvis.common.loadImage
-import com.top1shvetsvadim1.jarvis.databinding.ItemPreviewBinding
+import com.top1shvetsvadim1.jarvis.databinding.ItemPreviewBaseBinding
 import com.top1shvetsvadim1.jarvis.presentation.utils.recycler_utils.BaseUiModel
 import com.top1shvetsvadim1.jarvis.presentation.utils.recycler_utils.DelegateViewHolder
 import com.top1shvetsvadim1.jarvis.presentation.utils.recycler_utils.ItemSimpleDelegate
@@ -19,10 +18,14 @@ import com.top1shvetsvadim1.jarvis.presentation.utils.recycler_utils.ItemSimpleD
 @UIModel
 data class ItemPreviewUIModel(
     @PrimaryTag val tag: String,
-    val image: Image,
-    val title: Text,
-    val description: Text
+    val viewResourceID: Int,
+    val viewConfiguration: ProViewConfigurator,
+    val viewLayoutParams: FrameLayout.LayoutParams
 ) : BaseUiModel()
+
+fun interface ProViewConfigurator {
+    fun configureView(view: View)
+}
 
 @BindViewHolder(ItemPreviewDelegate.ItemPreviewViewHolder::class)
 @Instruction(ItemPreviewUIModel::class)
@@ -34,17 +37,33 @@ class ItemPreviewDelegate : ItemSimpleDelegate<ItemPreviewUIModel, ItemPreviewDe
 ) {
 
     override fun createViewHolder(inflater: LayoutInflater, parent: ViewGroup): ItemPreviewViewHolder {
-        return ItemPreviewViewHolder(ItemPreviewBinding.inflate(inflater, parent, false))
+        return ItemPreviewViewHolder(ItemPreviewBaseBinding.inflate(inflater, parent, false))
     }
 
     override fun provideInstructor(holder: ItemPreviewViewHolder, item: ItemPreviewUIModel, payload: Any): Instructor {
         return ItemPreviewInstruction()
     }
 
-    inner class ItemPreviewViewHolder(private val binding: ItemPreviewBinding) :
+    inner class ItemPreviewViewHolder(private val binding: ItemPreviewBaseBinding) :
         DelegateViewHolder<ItemPreviewUIModel>(binding) {
 
-        fun setImage(image: Image) {
+        private var viewForInflater: View? = null
+        fun setViewResourceID(viewResourceID: Int) {
+            binding.root.removeAllViews()
+            viewForInflater = LayoutInflater.from(context).inflate(viewResourceID, binding.containerPreview, false)
+            binding.containerPreview.addView(viewForInflater)
+        }
+
+        fun setViewConfiguration(viewConfiguration: ProViewConfigurator) {
+            viewForInflater?.let { viewConfiguration.configureView(it) }
+        }
+
+        fun setViewLayoutParams(viewLayoutParams: LayoutParams) {
+            viewForInflater?.let {
+                it.layoutParams = viewLayoutParams
+            }
+        }
+        /*fun setImage(image: Image) {
             image.loadImage(binding.image)
         }
 
@@ -54,6 +73,6 @@ class ItemPreviewDelegate : ItemSimpleDelegate<ItemPreviewUIModel, ItemPreviewDe
 
         fun setDescription(description: Text) {
             binding.description.text = description.getStringText(context)
-        }
+        }*/
     }
 }

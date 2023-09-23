@@ -4,4 +4,8 @@
     <string name="key_movies_tv_and_much_more">Movies, TV series\n and much more\n without restrictions</string>
     <string name="key_watch_anywhere">Watch anywhere. You can cancel your subscription or ticket at any time</string>
     <string name="key_start_watching">START WATCHING</string>
+    <string name="key_no_conditional">No\n tricky conditions</string>
+    <string name="key_no_conditials_description">Register today. You can cancel your subscription at any time.</string>
+    <string name="key_preview_save_info_and_ticket">Download, save and\n watch offline information\and about the film and purchased tickets.</string>
+    <string name="key_preview_save_info_and_ticket_description">You will always have access to your data offline</string>
 </resources>

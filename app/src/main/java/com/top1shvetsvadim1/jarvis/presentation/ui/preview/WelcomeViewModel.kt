@@ -1,8 +1,7 @@
 package com.top1shvetsvadim1.jarvis.presentation.ui.preview
 
+import android.widget.FrameLayout
 import com.top1shvetsvadim1.jarvis.R
-import com.top1shvetsvadim1.jarvis.common.Image
-import com.top1shvetsvadim1.jarvis.common.Text
 import com.top1shvetsvadim1.jarvis.presentation.base.Reducer
 import com.top1shvetsvadim1.jarvis.presentation.base.ViewModelBase
 import com.top1shvetsvadim1.jarvis.presentation.ui.preview.items.ItemPreviewUIModel
@@ -27,12 +26,40 @@ class WelcomeViewModel @Inject constructor() : ViewModelBase<WelcomeState, Welco
 
     private fun mapItems(): List<BaseUiModel> {
         return mutableListOf<BaseUiModel>().apply {
-            add(ItemPreviewUIModel(
-                tag = "preview_1",
-                image = Image.Resource(R.drawable.preview_1),
-                title = Text.Resource(R.string.key_movies_tv_and_much_more),
-                description = Text.Resource(R.string.key_watch_anywhere),
-            ))
+            add(
+                ItemPreviewUIModel(
+                    tag = "preview_1",
+                    viewResourceID = R.layout.item_preview,
+                    viewConfiguration = {},
+                    viewLayoutParams = FrameLayout.LayoutParams(
+                        FrameLayout.LayoutParams.MATCH_PARENT,
+                        FrameLayout.LayoutParams.MATCH_PARENT
+                    ),
+                )
+            )
+            add(
+                ItemPreviewUIModel(
+                    tag = "preview_2",
+                    viewResourceID = R.layout.item_preview_2,
+                    viewConfiguration = {},
+                    viewLayoutParams = FrameLayout.LayoutParams(
+                        FrameLayout.LayoutParams.MATCH_PARENT,
+                        FrameLayout.LayoutParams.MATCH_PARENT
+                    )
+                )
+            )
+            add(
+                ItemPreviewUIModel(
+                    tag = "preview_3",
+                    viewResourceID = R.layout.item_preview_3,
+                    viewConfiguration = {},
+                    viewLayoutParams = FrameLayout.LayoutParams(
+                        FrameLayout.LayoutParams.MATCH_PARENT,
+                        FrameLayout.LayoutParams.MATCH_PARENT
+                    )
+
+                )
+            )
         }
     }
 
