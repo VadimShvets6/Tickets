@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="cornerSize">10dp</dimen>
+    <dimen name="cornerSizeBig">20dp</dimen>
+    <dimen name="buttonHeight">@dimen/_44sdp</dimen>
+    <dimen name="textButtonHeight">@dimen/_20sdp</dimen>
+    <dimen name="commonTextSize">@dimen/_11ssp</dimen>
+    <dimen name="default_margin">@dimen/_12sdp</dimen>
+    <dimen name="titleText">@dimen/_15ssp</dimen>
+    <dimen name="default_input_padding">@dimen/_2sdp</dimen>
+    <dimen name="zero">0dp</dimen>
+</resources>

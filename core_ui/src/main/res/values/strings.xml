@@ -6,5 +6,10 @@
     <string name="key_no_conditional">Никаких\n хитроумных условий</string>
     <string name="key_no_conditials_description">Зарегистрируйтесь сегодня. Отменить подписку можно в любое время.</string>
     <string name="key_preview_save_info_and_ticket">Загружайте, сохраняйте и\n смотрите офлайн информацию\n о фильме и купленые билеты</string>
-    <string name="key_preview_save_info_and_ticket_description">У вас всегда будет доступ к своим данным офлайн</string>
+    <string name="key_preview_save_info_and_ticket_description">Доступ к своим данным офлайн</string>
+    <string name="key_confidential">КОНФИДЕНЦИАЛЬНОСТЬ</string>
+    <string name="key_sigin">ВОЙТИ</string>
+    <string name="key_start_watches_now">Готовы начать\n просмотр?</string>
+    <string name="key_dialog_start_now_description">Введите адресс электронной почты, чтобы войти в свой аккаунт или создать его.</string>
+    <string name="key_address_email">Адрес эл.почты</string>
 </resources>

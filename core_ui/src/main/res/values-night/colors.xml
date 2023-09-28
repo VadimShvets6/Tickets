@@ -15,6 +15,7 @@
     <color name="c_white_ffffff_black_212121">#212121</color>
     <color name="c_pale_gray_f2f2f2_cacaca">#cacaca</color>
     <color name="color_ffffff_F2F2F2">#f2f2f2</color>
+    <color name="color_ffffff_1c1c1c_pages_background">#1c1c1c</color>
     <color name="c_bg2_fffffff_2d2d2d">#2d2d2d</color>
     <color name="c_blue_chip_0091ff_244257">#244257</color>
     <color name="c_blue_text_0091ff_c0e3fd">#c0e3fd</color>
@@ -39,4 +40,5 @@
     <color name="color_3c3c3c_F2F2F2">#F2F2F2</color>
     <color name="color_FFFFFFFF_80000000">#80000000</color>
     <color name="c_page_1c1c1c_ffffff">#ffffff</color>
+    <color name="color_737373">#737373</color>
 </resources>

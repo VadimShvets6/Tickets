@@ -142,5 +142,6 @@ class AnimatorFactory<T : Any, V : View>(
         }
 
         val percentAnimator get() = AnimatorComponent(0f, 1f)
+        val inversePercentAnimator get() = AnimatorComponent(1f, 0f)
     }
 }

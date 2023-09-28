@@ -63,7 +63,5 @@ class WelcomeViewModel @Inject constructor() : ViewModelBase<WelcomeState, Welco
         }
     }
 
-    class WelcomeReducer : Reducer<WelcomeState, WelcomeEvent>(WelcomeState()) {
-
-    }
+    class WelcomeReducer : Reducer<WelcomeState, WelcomeEvent>(WelcomeState())
 }

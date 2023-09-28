@@ -6,16 +6,20 @@ import android.content.Context
 import android.content.res.Configuration
 import android.os.Build
 import android.util.DisplayMetrics
+import android.view.View
 import android.view.WindowManager
 import android.view.WindowMetrics
 import androidx.core.graphics.Insets
 import androidx.core.view.WindowCompat
 import com.example.coreutills.extentions.screenHeight
+import kotlin.math.abs
 import kotlin.math.max
 
 object ScreenManager {
 
     private val insetHandler = mutableMapOf<String, Int>()
+    val statusBarPadding get() = insetHandler["top"] ?: 0
+    val navigationBarPadding get() = insetHandler["bottom"] ?: 0
     fun consumeInset(insets: Insets) {
         insetHandler["bottom"] = insets.bottom
         insetHandler["top"] = insets.top
@@ -33,6 +37,7 @@ object ScreenManager {
             ).isAppearanceLightStatusBars = isLight
         }
     }
+
     fun restoreStatusBar(activity: Activity) {
         val isThemeLight =
             activity.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_NO
@@ -82,4 +87,18 @@ object ScreenManager {
             }
         }
     }
+
+    fun isThemeLight(activity: Activity): Boolean {
+        return activity.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_NO
+    }
+
+    fun calculateStartPositionView(context: Context, focus: View): Int {
+        val screen = IntArray(2)
+        focus.getLocationOnScreen(screen)
+        return calculateRealHeight(context) - screen[1] - focus.height
+    }
+    fun requestFoldCompatibleScreen(context: Context): Context {
+        return context
+    }
+
 }

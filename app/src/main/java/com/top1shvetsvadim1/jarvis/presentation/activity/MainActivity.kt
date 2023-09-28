@@ -20,4 +20,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         ScreenManager.restoreStatusBar(this)
     }
+
+    override fun onStop() {
+        super.onStop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+    }
 }
