@@ -4,21 +4,23 @@ import android.util.Log
 import com.example.coreutills.utils.SharedPreference
 import com.top1shvetsvadim1.jarvis.presentation.controler.ContextManager.retrieveApplicationContext
 import com.top1shvetsvadim1.jarvis.presentation.utils.extentions.launchIO
-import com.top1shvetsvadim1.jarvis.presentation.utils.storage.PropertiesStorage.Properties.*
+import com.top1shvetsvadim1.jarvis.presentation.utils.storage.PropertiesStorage.Properties.PotentialUserEmailAddress
+import com.top1shvetsvadim1.jarvis.presentation.utils.storage.PropertiesStorage.Properties.UserLanguage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.util.Locale
 import kotlin.coroutines.coroutineContext
 
 object PropertiesStorage {
     enum class Properties {
-        PotentialUserEmailAddress, Test
+        PotentialUserEmailAddress, UserLanguage
     }
 
     inline fun <reified T> Properties.default(): T {
         val def: Any = when (this) {
             PotentialUserEmailAddress -> ""
-            Test -> false
+            UserLanguage -> Locale.getDefault().language
         }
         return if (def is T) def else throw Exception("Invalid default param")
     }
@@ -74,6 +76,7 @@ object PropertiesStorage {
             else -> Unit as T
         }
     }
+
     fun getBoolean(property: Properties): Boolean = get(property)
 
     fun getString(property: Properties): String = get(property)

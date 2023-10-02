@@ -4,6 +4,6 @@
     android:layout_height="wrap_content"
     android:background="@color/black"
     android:id="@+id/mainContainer"
-    android:paddingVertical="@dimen/_12sdp">
+    android:paddingVertical="@dimen/_6sdp">
 
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -12,6 +12,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.Insets
 import androidx.core.view.forEachIndexed
+import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
 import com.example.coreutills.extentions.animateIsVisible
 import com.example.coreutills.factories.AnimatorFactory
@@ -49,10 +50,24 @@ class HubBottomNavigation @JvmOverloads constructor(
         view.scaleX = percent
         view.scaleY = percent
         view.animateIsVisible(percent != 0f)
-        /* view.updateLayoutParams {
+         /*view.updateLayoutParams {
              width = (84.dp * percent).toInt()
          }*/
     }
+
+    private fun setHeightText(view: View, isInverse: Boolean) = AnimatorFactory.createSimpleFloatFactory(
+        view = view,
+        component = if (isInverse) AnimatorFactory.AnimatorComponent(
+            view.height.toFloat(),
+            0f
+        ) else AnimatorFactory.AnimatorComponent(0f, view.height.toFloat()),
+        duration = 200,
+        interpolator = AccelerateDecelerateInterpolator(),
+        onChange = { view, percent ->
+            view.updateLayoutParams {
+                height = percent.toInt()
+            }
+        })
 
     private fun setTintColor(view: View) {
 
@@ -73,6 +88,8 @@ class HubBottomNavigation @JvmOverloads constructor(
                             currentSelectedTabAsView?.let {
                                 val currentBinding = ViewHubItemNavigationBinding.bind(it)
                                 getTextAnimator(currentBinding.text, true).buildAndStart()
+                                //setHeightText(currentBinding.text, true).buildAndStart()
+                                //  setHeightText(currentBinding.text, false).buildAndStart()
                                 //getTintAnimator(currentBinding.text, true).buildAndStart()
                                 //getTintAnimator(currentBinding.image, true).buildAndStart()
                                 currentBinding.bg.background = null
@@ -90,6 +107,8 @@ class HubBottomNavigation @JvmOverloads constructor(
                             currentSelectedTabAsView?.let {
                                 val currentBinding = ViewHubItemNavigationBinding.bind(it)
                                 getTextAnimator(currentBinding.text, false).buildAndStart()
+                                //setHeightText(currentBinding.text, true).buildAndStart()
+                                //setHeightText(currentBinding.text, false).buildAndStart()
                                 //getTintAnimator(currentBinding.text, false).buildAndStart()
                                 //getTintAnimator(currentBinding.image, false).buildAndStart()
                                 currentBinding.bg.background =
@@ -134,6 +153,7 @@ class HubBottomNavigation @JvmOverloads constructor(
             binding.text.apply {
                 setTextColor(ContextCompat.getColor(context, R.color.white)) // TODO CHANGE TO TYPEFACE
             }
+            //setHeightText(binding.text, false).buildAndStart()
             binding.bg.background =
                 ContextCompat.getDrawable(context, R.drawable.rectangele_bottom_ripple)
             getTextAnimator(binding.text, false).buildAndStart()
@@ -153,7 +173,8 @@ class HubBottomNavigation @JvmOverloads constructor(
             binding.text.apply {
                 setTextColor(ContextCompat.getColor(context, R.color.black))
             }
-            getTextAnimator(binding.text, true)
+            //setHeightText(binding.text, true).buildAndStart()
+            getTextAnimator(binding.text, true).buildAndStart()
             //getTintAnimator(binding.image, true).buildAndStart()
 
             // binding.bg.alpha = 0f

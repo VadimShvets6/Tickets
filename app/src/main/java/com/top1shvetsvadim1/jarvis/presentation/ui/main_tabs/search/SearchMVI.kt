@@ -1,15 +1,14 @@
-package com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.home
+package com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.search
 
 import com.top1shvetsvadim1.jarvis.presentation.base.Event
 import com.top1shvetsvadim1.jarvis.presentation.base.IntentMVI
 import com.top1shvetsvadim1.jarvis.presentation.base.State
-
-data class HomeState(
+data class SearchState(
     val stub: Unit = Unit
 ) : State
 
-sealed interface HomeEvent : Event {}
+sealed interface SearchEvent : Event {}
 
-sealed interface HomeIntent : IntentMVI {
-    object LoadItems: HomeIntent
+sealed interface SearchIntent : IntentMVI {
+    object LoadItems: SearchIntent
 }

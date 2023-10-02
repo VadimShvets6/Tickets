@@ -80,6 +80,14 @@ dependencies {
     //MultiDex
     implementation 'androidx.multidex:multidex:2.0.1'
 
+    //Retrofit
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.1'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.5.0'
+
     implementation 'androidx.fragment:fragment-ktx:1.5.3'
 
     implementation project(path: ':core_ui')

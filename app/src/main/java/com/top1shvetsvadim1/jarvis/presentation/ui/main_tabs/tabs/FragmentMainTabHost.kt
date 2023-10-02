@@ -33,18 +33,26 @@ class FragmentMainTabHost :
     override fun applyOnViews(): FragmentMainTabHostBinding.() -> Unit {
         return {
             requireBinding().navigation.consumeTabs(mutableListOf<HubBottomNavigation.Tab>().apply {
-                add(HubBottomNavigation.Tab(
-                    id = R.id.fragmentHome, icon = R.drawable.ic_home, text = "Home"
-                ))
-                add(HubBottomNavigation.Tab(
-                    id = R.id.fragmentWelcome2, icon = R.drawable.ic_search, text = "Search"
-                ))
-                add(HubBottomNavigation.Tab(
-                    id = R.id.fragmentHome, icon = R.drawable.ic_saved, text = "Tickets"
-                ))
-                add(HubBottomNavigation.Tab(
-                    id = R.id.fragmentHome, icon = R.drawable.ic_profile, text = "Profile"
-                ))
+                add(
+                    HubBottomNavigation.Tab(
+                        id = R.id.fragmentHome, icon = R.drawable.ic_home, text = "Home"
+                    )
+                )
+                add(
+                    HubBottomNavigation.Tab(
+                        id = R.id.fragmentSearch, icon = R.drawable.ic_search, text = "Search"
+                    )
+                )
+                add(
+                    HubBottomNavigation.Tab(
+                        id = R.id.fragmentTickets, icon = R.drawable.ic_saved, text = "Tickets"
+                    )
+                )
+                add(
+                    HubBottomNavigation.Tab(
+                        id = R.id.fragmentMyProfile, icon = R.drawable.ic_profile, text = "Profile"
+                    )
+                )
             })
             val navHostFragment = requireBinding().tabHostMain.getFragment<NavHostFragment>()
             val navController = navHostFragment.navController

@@ -9,7 +9,15 @@
         android:name="com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.home.FragmentHome"
         android:label="FragmentHome" />
     <fragment
-        android:id="@+id/fragmentWelcome2"
-        android:name="com.top1shvetsvadim1.jarvis.presentation.ui.preview.FragmentWelcome"
-        android:label="FragmentWelcome" />
+        android:id="@+id/fragmentSearch"
+        android:name="com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.search.FragmentSearch"
+        android:label="FragmentSearch" />
+    <fragment
+        android:id="@+id/fragmentTickets"
+        android:name="com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.tickets.FragmentTickets"
+        android:label="FragmentTickets" />
+    <fragment
+        android:id="@+id/fragmentMyProfile"
+        android:name="com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.profile.FragmentMyProfile"
+        android:label="FragmentMyProfile" />
 </navigation>
