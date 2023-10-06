@@ -18,6 +18,8 @@ abstract class DelegateViewHolder<I : BaseUiModel>(binding: ViewBinding) : Recyc
 
     }
 
+    
+
 }
 
 

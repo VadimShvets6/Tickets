@@ -55,6 +55,10 @@ class HubBottomNavigation @JvmOverloads constructor(
          }*/
     }
 
+    fun setOnItemSelectedListener(listener: (Int) -> Unit) {
+        onTabChanged = listener
+    }
+
     private fun setHeightText(view: View, isInverse: Boolean) = AnimatorFactory.createSimpleFloatFactory(
         view = view,
         component = if (isInverse) AnimatorFactory.AnimatorComponent(
@@ -99,7 +103,7 @@ class HubBottomNavigation @JvmOverloads constructor(
                                         R.color.color_737373
                                     )
                                 )
-                                currentBinding.text.setTextColor(ContextCompat.getColor(context, R.color.white))
+                                currentBinding.text.setTextColor(ContextCompat.getColor(context, R.color.c_black_text_000000_fafafa))
                             }
                             currentSelectedTabAsView = it
                             activeTab = binding.mainContainer.indexOfChild(it)
@@ -113,8 +117,8 @@ class HubBottomNavigation @JvmOverloads constructor(
                                 //getTintAnimator(currentBinding.image, false).buildAndStart()
                                 currentBinding.bg.background =
                                     ContextCompat.getDrawable(context, R.drawable.rectangele_bottom_ripple)
-                                currentBinding.image.setColorFilter(ContextCompat.getColor(context, R.color.white))
-                                currentBinding.text.setTextColor(ContextCompat.getColor(context, R.color.white))
+                                currentBinding.image.setColorFilter(ContextCompat.getColor(context, R.color.c_black_text_000000_fafafa))
+                                currentBinding.text.setTextColor(ContextCompat.getColor(context, R.color.c_black_text_000000_fafafa))
                             }
                         }
                     }
@@ -149,9 +153,9 @@ class HubBottomNavigation @JvmOverloads constructor(
         val binding = ViewHubItemNavigationBinding.bind(tabView)
         currentSelectedTabAsView = tabView
         binding.root.post {
-            binding.image.setColorFilter(ContextCompat.getColor(context, R.color.white))
+            binding.image.setColorFilter(ContextCompat.getColor(context, R.color.c_black_text_000000_fafafa))
             binding.text.apply {
-                setTextColor(ContextCompat.getColor(context, R.color.white)) // TODO CHANGE TO TYPEFACE
+                setTextColor(ContextCompat.getColor(context, R.color.c_black_text_000000_fafafa)) // TODO CHANGE TO TYPEFACE
             }
             //setHeightText(binding.text, false).buildAndStart()
             binding.bg.background =

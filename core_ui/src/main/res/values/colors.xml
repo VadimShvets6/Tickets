@@ -12,8 +12,10 @@
     <color name="c_dark_gray_727272_cacaca">#727272</color>
     <color name="c_darker_gray_7b7b7b_cacaca">#727272</color>
     <color name="c_silver_c2c2c2">#C2C2C2</color>
+    <color name="color_ffffff_121212">#FFFFFF</color>
     <color name="c_silver_comb_c2c2c2">#c2c2c2</color>
     <color name="c_black_text_000000_fafafa">#000000</color>
+    <color name="c_black_text_fafafa_000000">#fafafa</color>
     <color name="c_light_gray_cacaca">#CACACA</color>
     <color name="c_white_ffffff">#ffffff</color>
     <color name="c_white_ffffff_black_404040">#ffffff</color>

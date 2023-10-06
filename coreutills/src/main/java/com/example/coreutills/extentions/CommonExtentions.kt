@@ -1,6 +1,7 @@
 package com.example.coreutills.extentions
 
 import android.util.Log
+import com.google.gson.Gson
 import kotlin.reflect.KClass
 
 inline fun <reified T> tryNull(tryAction: () -> T?): T? {
@@ -28,6 +29,14 @@ inline fun <reified T> tryLogException(tryAction: () -> T?): T? {
         ex.printStackTrace()
         null
     }
+}
+
+inline fun <reified T> T.toJSON(): String {
+    return Gson().toJson(this)
+}
+
+inline fun <reified T> String.fromJSONTo(): T {
+    return Gson().fromJson(this, T::class.java)
 }
 
 val KClass<*>.nameTag get() = qualifiedName ?: ""

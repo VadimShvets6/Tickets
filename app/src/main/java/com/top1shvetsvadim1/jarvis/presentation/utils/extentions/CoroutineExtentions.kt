@@ -5,6 +5,7 @@ package com.top1shvetsvadim1.jarvis.presentation.utils.extentions
 import com.example.coreutills.extentions.tryLogException
 import com.example.coreutills.extentions.tryNull
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
@@ -117,6 +118,16 @@ suspend inline fun <T : Any, R> List<T>.mapIndexedAsync(crossinline transformati
 
 inline fun <reified T> CoroutineScope.initAsync(crossinline initializer: suspend () -> T) = async(coroutineContext) {
     initializer()
+}
+
+suspend inline fun <reified T> MutableList<Deferred<T>>.addAsync(crossinline action: suspend () -> T) {
+    withContext(coroutineContext) {
+        add(
+            async(Dispatchers.IO) {
+                action()
+            }
+        )
+    }
 }
 
 inline fun <reified T> MutableList<T>.add(crossinline action: () -> T) {

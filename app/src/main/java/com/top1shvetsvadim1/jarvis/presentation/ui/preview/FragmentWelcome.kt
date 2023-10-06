@@ -76,14 +76,16 @@ class FragmentWelcome : FragmentBaseMVI<FragmentWelcomeBinding, WelcomeState, We
             ScreenManager.setStatusBarContrast(requireActivity(), false)
             start.setOnClickListener {
                 stopAutoScroll()
-                BottomDialogStartNow().show(
+                findNavController().navigate(FragmentWelcomeDirections.actionFragmentWelcomeToFragmentMainTabHost3())
+
+                /*BottomDialogStartNow().show(
                     this@FragmentWelcome, BottomDialogStartNow.Params(
                         email = PropertiesStorage.getString(PropertiesStorage.Properties.PotentialUserEmailAddress),
                         onClickStart = {
                             findNavController().navigate(FragmentWelcomeDirections.actionFragmentWelcomeToFragmentMainTabHost3())
                         }
                     )
-                )
+                )*/
             }
             confidential.setOnClickListener {
                 tryNull {
@@ -108,7 +110,7 @@ class FragmentWelcome : FragmentBaseMVI<FragmentWelcomeBinding, WelcomeState, We
     }
 
     private fun unRegisterViewPagerCallbacks() {
-        binding?.viewPager?.unregisterOnPageChangeCallback(viewPagerCallback)
+        requireBinding().viewPager.unregisterOnPageChangeCallback(viewPagerCallback)
     }
 
     private fun startAutoScroll() {
@@ -160,10 +162,16 @@ class FragmentWelcome : FragmentBaseMVI<FragmentWelcomeBinding, WelcomeState, We
 
     private fun stopAutoScroll() {
         autoScrollJob?.cancel()
+        autoScrollJob = null
     }
 
-    override fun onDestroyView() {
+    override fun beforeDestroyView() {
         unRegisterViewPagerCallbacks()
+        requireBinding().viewPager.adapter = null
+        requireBinding().indicator.removeDot()
+        super.beforeDestroyView()
+    }
+    override fun onDestroyView() {
         super.onDestroyView()
         stopAutoScroll()
     }

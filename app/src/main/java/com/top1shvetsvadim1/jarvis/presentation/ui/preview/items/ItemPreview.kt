@@ -7,12 +7,15 @@ import android.widget.FrameLayout
 import android.widget.FrameLayout.LayoutParams
 import com.flexeiprata.novalles.annotations.BindViewHolder
 import com.flexeiprata.novalles.annotations.Instruction
+import com.flexeiprata.novalles.annotations.NonUIProperty
 import com.flexeiprata.novalles.annotations.PrimaryTag
 import com.flexeiprata.novalles.annotations.UIModel
 import com.flexeiprata.novalles.interfaces.Instructor
+import com.top1shvetsvadim1.jarvis.R
 import com.top1shvetsvadim1.jarvis.databinding.ItemPreviewBaseBinding
 import com.top1shvetsvadim1.jarvis.presentation.utils.recycler_utils.BaseUiModel
 import com.top1shvetsvadim1.jarvis.presentation.utils.recycler_utils.DelegateViewHolder
+import com.top1shvetsvadim1.jarvis.presentation.utils.recycler_utils.ItemPrefetchDelegate
 import com.top1shvetsvadim1.jarvis.presentation.utils.recycler_utils.ItemSimpleDelegate
 
 @UIModel
@@ -20,7 +23,7 @@ data class ItemPreviewUIModel(
     @PrimaryTag val tag: String,
     val viewResourceID: Int,
     val viewConfiguration: ProViewConfigurator,
-    val viewLayoutParams: FrameLayout.LayoutParams
+    @NonUIProperty val viewLayoutParams: LayoutParams
 ) : BaseUiModel()
 
 fun interface ProViewConfigurator {
@@ -44,10 +47,15 @@ class ItemPreviewDelegate : ItemSimpleDelegate<ItemPreviewUIModel, ItemPreviewDe
         return ItemPreviewInstruction()
     }
 
+    private var viewForInflater: View? = null
+    override fun onRelease() {
+        super.onRelease()
+        viewForInflater = null
+    }
+
     inner class ItemPreviewViewHolder(private val binding: ItemPreviewBaseBinding) :
         DelegateViewHolder<ItemPreviewUIModel>(binding) {
 
-        private var viewForInflater: View? = null
         fun setViewResourceID(viewResourceID: Int) {
             binding.root.removeAllViews()
             viewForInflater = LayoutInflater.from(context).inflate(viewResourceID, binding.containerPreview, false)
@@ -63,16 +71,5 @@ class ItemPreviewDelegate : ItemSimpleDelegate<ItemPreviewUIModel, ItemPreviewDe
                 it.layoutParams = viewLayoutParams
             }
         }
-        /*fun setImage(image: Image) {
-            image.loadImage(binding.image)
-        }
-
-        fun setTitle(title: Text) {
-            binding.title.text = title.getStringText(context)
-        }
-
-        fun setDescription(description: Text) {
-            binding.description.text = description.getStringText(context)
-        }*/
     }
 }

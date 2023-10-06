@@ -563,8 +563,13 @@ abstract class SuperFragment<T : ViewBinding> : Fragment(), ViewBindingHolder<T>
         }
     }
 
+    open fun onRelease(){
+
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
+        onRelease()
         binding = null
         viewAnimateIme?.viewTreeObserver?.removeOnGlobalFocusChangeListener(focus)
         viewAnimateIme = null

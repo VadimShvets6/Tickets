@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/posterImage"
+        android:layout_width="@dimen/_178sdp"
+        android:layout_height="@dimen/_250sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:scaleType="centerCrop"
+        tools:src="@drawable/preview_film_5"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/ratingCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Me.Text.Regular"
+        android:textColor="@color/white"
+        tools:text="9.4"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/default_margin"
+        app:layout_constraintTop_toTopOf="@id/posterImage"
+        app:layout_constraintEnd_toEndOf="@id/posterImage"/>
+
+    <RatingBar
+        android:id="@+id/rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="1"
+        android:rating="1"
+        android:secondaryProgressTint="@android:color/transparent"
+        android:layout_marginEnd="@dimen/_2sdp"
+        android:progressTint="@color/c_dark_orange_de6e4b"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        app:layout_constraintBottom_toBottomOf="@id/ratingCount"
+        app:layout_constraintTop_toTopOf="@id/ratingCount"
+        app:layout_constraintEnd_toStartOf="@id/ratingCount"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

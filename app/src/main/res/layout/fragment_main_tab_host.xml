@@ -4,13 +4,36 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/toolbar"
+        android:elevation="8dp"
+        android:paddingVertical="@dimen/_8sdp"
+        android:layout_width="match_parent"
+        android:background="@color/color_ffffff_121212"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/toolbarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Home"
+            android:paddingHorizontal="@dimen/default_margin"
+            android:textSize="@dimen/_18ssp"
+            style="@style/Me.Text.Title"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
     <androidx.fragment.app.FragmentContainerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:id="@+id/tabHostMain"
         android:name="androidx.navigation.fragment.NavHostFragment"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/bottom_navigation"/>
+        app:navGraph="@navigation/bottom_navigation"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toTopOf="@id/navigation"/>
 
 
     <com.top1shvetsvadim1.jarvis.presentation.utils.views.HubBottomNavigation

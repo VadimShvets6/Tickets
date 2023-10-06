@@ -2,7 +2,9 @@ package com.top1shvetsvadim1.jarvis.presentation.utils.managers
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.annotation.IdRes
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.navigation.ActivityNavigator
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
@@ -16,9 +18,16 @@ import java.lang.ref.WeakReference
 object NavigationManager {
     fun setupWithNavController(
         navigationBarView: HubBottomNavigation,
-        navController: NavController
+        navController: NavController,
+        title: AppCompatTextView
     ) {
         navigationBarView.onTabChanged = { id ->
+            when(id){
+                R.id.fragmentHome -> title.text = "Home"
+                R.id.fragmentSearch -> title.text = "Search"
+                R.id.fragmentTickets -> title.text = "Tickets"
+                R.id.fragmentMyProfile -> title.text = "Profile"
+            }
             onNavDestinationSelected(
                 id,
                 navController

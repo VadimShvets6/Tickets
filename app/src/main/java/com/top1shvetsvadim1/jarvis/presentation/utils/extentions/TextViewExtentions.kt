@@ -8,6 +8,7 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatTextView
 import com.top1shvetsvadim1.jarvis.common.KTextSpan
 import com.top1shvetsvadim1.jarvis.common.Text
 import java.util.Locale
@@ -52,4 +53,40 @@ fun TextView.setClickableSpan(fullText: String, spans: List<KTextSpan>) {
     } catch (e: Exception) {
         e.printStackTrace()
     }
+}
+
+fun AppCompatTextView.setTextAnimation(text: String, duration: Long = 200, completion: (() -> Unit)? = null) {
+    fadOutAnimation(duration) {
+        this.text = text
+        fadInAnimation(duration) {
+            completion?.let {
+                it()
+            }
+        }
+    }
+}
+
+fun View.fadOutAnimation(duration: Long = 200, visibility: Int = View.INVISIBLE, completion: (() -> Unit)? = null) {
+    animate()
+        .alpha(0f)
+        .setDuration(duration)
+        .withEndAction {
+            this.visibility = visibility
+            completion?.let {
+                it()
+            }
+        }
+}
+
+fun View.fadInAnimation(duration: Long = 200, completion: (() -> Unit)? = null) {
+    alpha = 0f
+    visibility = View.VISIBLE
+    animate()
+        .alpha(1f)
+        .setDuration(duration)
+        .withEndAction {
+            completion?.let {
+                it()
+            }
+        }
 }

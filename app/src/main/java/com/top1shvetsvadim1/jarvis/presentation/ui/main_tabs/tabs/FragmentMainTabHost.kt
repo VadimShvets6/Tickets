@@ -1,16 +1,24 @@
 package com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.tabs
 
+import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.graphics.Insets
+import androidx.core.view.updatePadding
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
+import com.example.coreutills.managers.ScreenManager
 import com.top1shvetsvadim1.jarvis.R
 import com.top1shvetsvadim1.jarvis.databinding.FragmentMainTabHostBinding
 import com.top1shvetsvadim1.jarvis.presentation.base.FragmentBaseMVI
+import com.top1shvetsvadim1.jarvis.presentation.utils.extentions.dp
+import com.top1shvetsvadim1.jarvis.presentation.utils.extentions.launchUI
 import com.top1shvetsvadim1.jarvis.presentation.utils.managers.NavigationManager
 import com.top1shvetsvadim1.jarvis.presentation.utils.views.HubBottomNavigation
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 
 @AndroidEntryPoint
 class FragmentMainTabHost :
@@ -22,16 +30,26 @@ class FragmentMainTabHost :
         return FragmentMainTabHostBinding.inflate(inflater)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        //postponeEnterTransition()
+    }
+
     override fun setupInset(inset: Insets) {
         requireBinding().navigation.consumeInsets(inset)
+        requireBinding().toolbar.updatePadding(top = inset.top + 12.dp.toInt())
     }
 
     override fun render(state: MainTabHostState) {
-
+        //viewLifecycleOwner.lifecycleScope.launchUI {
+            //delay(100)
+        //    startPostponedEnterTransition()
+       // }.cancel()
     }
 
     override fun applyOnViews(): FragmentMainTabHostBinding.() -> Unit {
         return {
+            ScreenManager.restoreStatusBar(requireActivity())
             requireBinding().navigation.consumeTabs(mutableListOf<HubBottomNavigation.Tab>().apply {
                 add(
                     HubBottomNavigation.Tab(
@@ -56,8 +74,7 @@ class FragmentMainTabHost :
             })
             val navHostFragment = requireBinding().tabHostMain.getFragment<NavHostFragment>()
             val navController = navHostFragment.navController
-            navController.let { NavigationManager.setupWithNavController(requireBinding().navigation, it) }
-
+            navController.let { NavigationManager.setupWithNavController(requireBinding().navigation, it, requireBinding().toolbarTitle) }
         }
     }
 }
