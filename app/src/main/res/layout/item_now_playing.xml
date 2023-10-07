@@ -15,7 +15,6 @@
         android:layout_marginHorizontal="@dimen/default_margin"
         android:layout_marginTop="@dimen/_18sdp"
         android:gravity="start"
-        android:text="Now Playing"
         android:textSize="@dimen/_18ssp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

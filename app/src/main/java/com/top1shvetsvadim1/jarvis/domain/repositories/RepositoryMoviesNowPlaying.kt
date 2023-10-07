@@ -7,6 +7,6 @@ interface RepositoryMoviesNowPlaying {
 
     suspend fun fetchListMoviesNowPlaying()
 
-    suspend fun getListMoviesNowPlaying() : Flow<List<HubMovieModel>>
+    suspend fun getListMoviesNowPlayingPreview() : Flow<List<HubMovieModel>>
 
 }

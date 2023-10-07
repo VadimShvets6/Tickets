@@ -10,6 +10,6 @@ class GetMoviesNowPlayingUseCase @Inject constructor(
     private val repositoryMoviesNowPlaying: RepositoryMoviesNowPlaying
 ) : SuspendUseCase<Unit, Flow<List<HubMovieModel>>> {
     override suspend fun invoke(params: Unit): Flow<List<HubMovieModel>> {
-        return repositoryMoviesNowPlaying.getListMoviesNowPlaying()
+        return repositoryMoviesNowPlaying.getListMoviesNowPlayingPreview()
     }
 }

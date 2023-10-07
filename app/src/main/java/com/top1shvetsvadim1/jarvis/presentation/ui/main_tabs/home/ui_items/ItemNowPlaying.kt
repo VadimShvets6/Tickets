@@ -19,6 +19,7 @@ import com.top1shvetsvadim1.jarvis.presentation.utils.recycler_utils.ItemSimpleD
 @UIModel
 data class ItemNowPlayingBase(
     @PrimaryTag val tag: String,
+    val title: String,
     val listImages: List<BaseUiModel>
 ) : BaseUiModel()
 
@@ -62,6 +63,11 @@ class ItemNowPlayingBaseDelegate :
 
         override fun bind(item: ItemNowPlayingBase) {
             setListImages(item.listImages)
+            setTitle(item.title)
+        }
+
+        fun setTitle(title: String) {
+            binding.title.text = title
         }
 
         override fun setOnClickListeners(item: ItemNowPlayingBase) {

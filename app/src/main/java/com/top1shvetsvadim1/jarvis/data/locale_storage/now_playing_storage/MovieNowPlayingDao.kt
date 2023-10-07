@@ -11,6 +11,6 @@ interface MovieNowPlayingDao {
     @Upsert
     fun upsertMoviesNowPlayingList(nowPlayingList: List<MovieNowPlayingDDModel>)
 
-    @Query("Select * from movies_now_playing order by popularity desc limit 10")
+    @Query("Select * from movies_now_playing order by releaseDate desc limit 10")
     fun getMoviesNowPlayingPreview(): Flow<List<MovieNowPlayingDDModel>>
 }

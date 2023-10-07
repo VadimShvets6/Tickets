@@ -48,6 +48,7 @@ class RepositoryMoviesPopularImpl @Inject constructor(
         ) { movies, genres ->
             movies.map {
                 HubMovieModel(
+                    id = it.id,
                     posterImage = it.posterPath,
                     movieName = it.title,
                     genres = genres.filter { genres -> genres.id in it.genreId }.map { genre -> genre.title },

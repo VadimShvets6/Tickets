@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.top1shvetsvadim1.jarvis.R
 import com.top1shvetsvadim1.jarvis.databinding.FragmentHomeBinding
 import com.top1shvetsvadim1.jarvis.presentation.base.FragmentBaseMVI
 import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.home.ui_items.ItemNowPlayingBaseDelegate
+import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.home.ui_items.ItemPopularMoviesDelegate
 import com.top1shvetsvadim1.jarvis.presentation.utils.custo_views.SpaceDecorator
 import com.top1shvetsvadim1.jarvis.presentation.utils.recycler_utils.DelegateAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,7 +19,7 @@ class FragmentHome : FragmentBaseMVI<FragmentHomeBinding, HomeState, HomeEvent, 
     override val viewModel: HomeViewModel by viewModels()
 
     private val adapterHome = DelegateAdapter.Builder()
-        .setDelegates(ItemNowPlayingBaseDelegate())
+        .setDelegates(ItemNowPlayingBaseDelegate(), ItemPopularMoviesDelegate())
         .setActionProcessor { }
         .build()
 
@@ -33,7 +33,6 @@ class FragmentHome : FragmentBaseMVI<FragmentHomeBinding, HomeState, HomeEvent, 
     }
 
     override fun render(state: HomeState) {
-        Log.d("deb", "State : ${state.items}, ${state.isLoading}")
         adapterHome.submitList(state.items)
     }
 

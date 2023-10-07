@@ -36,7 +36,7 @@
         android:rating="1"
         android:secondaryProgressTint="@android:color/transparent"
         android:layout_marginEnd="@dimen/_2sdp"
-        android:progressTint="@color/c_dark_orange_de6e4b"
+        android:progressTint="@color/color_stars"
         style="@style/Widget.AppCompat.RatingBar.Small"
         app:layout_constraintBottom_toBottomOf="@id/ratingCount"
         app:layout_constraintTop_toTopOf="@id/ratingCount"

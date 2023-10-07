@@ -14,6 +14,6 @@ interface MoviePopularDao {
     @Upsert
     fun upsertMoviePopular(moviePopular: MoviePopularDB)
 
-    @Query("Select * from movie_popular order by voteCount desc limit 10")
+    @Query("Select * from movie_popular order by popularity desc limit 10")
     fun getMoviePopularPreview(): Flow<List<MoviePopularDB>>
 }

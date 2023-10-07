@@ -32,7 +32,7 @@ class FragmentMainTabHost :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //postponeEnterTransition()
+        postponeEnterTransition()
     }
 
     override fun setupInset(inset: Insets) {
@@ -41,10 +41,10 @@ class FragmentMainTabHost :
     }
 
     override fun render(state: MainTabHostState) {
-        //viewLifecycleOwner.lifecycleScope.launchUI {
-            //delay(100)
-        //    startPostponedEnterTransition()
-       // }.cancel()
+        viewLifecycleOwner.lifecycleScope.launchUI {
+            delay(100)
+            startPostponedEnterTransition()
+        }
     }
 
     override fun applyOnViews(): FragmentMainTabHostBinding.() -> Unit {
