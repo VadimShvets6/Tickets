@@ -8,3 +8,8 @@ data class HubMovieModel(
     val voteRated: Double,
     val releaseDate: String
 )
+
+data class HubGenresModel(
+    val id: Int,
+    val title: String
+)

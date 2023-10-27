@@ -13,6 +13,7 @@ import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import com.example.coreutills.managers.ScreenManager
 import com.top1shvetsvadim1.jarvis.R
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,6 +31,10 @@ class MainActivity : AppCompatActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setContentView(R.layout.activity_main)
         ScreenManager.restoreStatusBar(this)
+
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.mainNavContainer) as NavHostFragment
+        navController = navHostFragment.navController
 
         val content: View = findViewById(android.R.id.content)
         content.viewTreeObserver.addOnPreDrawListener(

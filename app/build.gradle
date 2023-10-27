@@ -65,6 +65,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
     implementation 'androidx.activity:activity-ktx:1.7.2'
     implementation project(path: ':coreutills')
+    implementation project(path: ':designsystem')
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
@@ -110,6 +111,14 @@ dependencies {
     implementation 'androidx.fragment:fragment-ktx:1.5.3'
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.12'
+
+    //Player
+    implementation 'androidx.media3:media3-exoplayer:1.1.1'
+    implementation 'androidx.media3:media3-ui:1.1.1'
+    implementation 'androidx.media3:media3-exoplayer-dash:1.1.1'
+    implementation 'androidx.media3:media3-transformer:1.1.1'
+    implementation 'androidx.media3:media3-effect:1.1.1'
+    implementation 'androidx.media3:media3-common:1.1.1'
 
     implementation project(path: ':core_ui')
 }

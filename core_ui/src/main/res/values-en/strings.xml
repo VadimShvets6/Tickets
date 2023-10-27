@@ -13,4 +13,16 @@
     <string name="key_start_watches_now">Ready to start\n browsing?</string>
     <string name="key_dialog_start_now_description">Enter your email address to sign in or create an account.</string>
     <string name="key_address_email">E-mail address</string>
+    <string name="key_home">Home</string>
+    <string name="key_search">Search</string>
+    <string name="key_save">Saved</string>
+    <string name="ket_profile">Profile</string>
+    <string name="key_now_playing">Now Playing</string>
+    <string name="key_popular">Popular</string>
+    <string name="key_top_rated">Top Rated</string>
+    <string name="key_genres">Genres</string>
+    <string name="key_see_all">See all</string>
+    <string name="key_upcoming">Upcoming</string>
+    <string name="key_premiere">Premiere</string>
+    <string name="key_dayli_trending">Trends of the day</string>
 </resources>

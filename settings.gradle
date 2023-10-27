@@ -17,3 +17,4 @@ rootProject.name = "Movie Ticket Hub"
 include ':app'
 include ':core_ui'
 include ':coreutills'
+include ':designsystem'

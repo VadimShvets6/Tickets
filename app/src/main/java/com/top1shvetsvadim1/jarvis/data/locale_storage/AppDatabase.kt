@@ -12,10 +12,19 @@ import com.top1shvetsvadim1.jarvis.data.locale_storage.now_playing_storage.Movie
 import com.top1shvetsvadim1.jarvis.data.locale_storage.now_playing_storage.MovieNowPlayingDao
 import com.top1shvetsvadim1.jarvis.data.locale_storage.popular.MoviePopularDB
 import com.top1shvetsvadim1.jarvis.data.locale_storage.popular.MoviePopularDao
+import com.top1shvetsvadim1.jarvis.data.locale_storage.top_rated.MoviesTopRatedDB
+import com.top1shvetsvadim1.jarvis.data.locale_storage.top_rated.MoviesTopRatedDao
+import com.top1shvetsvadim1.jarvis.data.locale_storage.trending.MovieTrendDB
+import com.top1shvetsvadim1.jarvis.data.locale_storage.trending.MovieTrendingDao
+import com.top1shvetsvadim1.jarvis.data.locale_storage.trending.PeopleTrendDB
+import com.top1shvetsvadim1.jarvis.data.locale_storage.trending.PeopleTrendingDao
+import com.top1shvetsvadim1.jarvis.data.locale_storage.upcoming.MovieUpcomingDB
+import com.top1shvetsvadim1.jarvis.data.locale_storage.upcoming.MoviesUpcomingDao
 
 
 @Database(
-    entities = [MovieNowPlayingDDModel::class, MovieGenreDB::class, MoviePopularDB::class],
+    entities = [MovieNowPlayingDDModel::class, MovieGenreDB::class, MoviePopularDB::class, MoviesTopRatedDB::class,
+        MovieUpcomingDB::class, MovieTrendDB::class, PeopleTrendDB::class],
     version = 1,
     exportSchema = true
 )
@@ -27,6 +36,10 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun moviesNowPlayingDao(): MovieNowPlayingDao
     abstract fun moviesGenreDao(): MovieGenreDao
     abstract fun moviePopularDao(): MoviePopularDao
+    abstract fun movieTopRatedDao(): MoviesTopRatedDao
+    abstract fun movieUpcomingDao(): MoviesUpcomingDao
+    abstract fun movieTrendingDao(): MovieTrendingDao
+    abstract fun peopleTrendingDao(): PeopleTrendingDao
 
     companion object {
         @Volatile

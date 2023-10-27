@@ -15,6 +15,7 @@
         android:layout_marginHorizontal="@dimen/default_margin"
         android:layout_marginTop="@dimen/_18sdp"
         android:gravity="start"
+        tools:text="Now playing"
         android:textSize="@dimen/_18ssp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,14 +25,14 @@
         style="@style/Me.Text.Regular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/default_margin"
         android:padding="@dimen/_8sdp"
         android:stateListAnimator="@animator/button_state_list_anim"
-        android:text="See all"
+        android:text="@string/key_see_all"
         android:textColor="@color/c_dark_orange_de6e4b"
+        app:layout_constraintBottom_toBottomOf="@+id/title"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/title" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
@@ -69,7 +70,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_60sdp"
-        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_4sdp"
         android:ellipsize="end"
         android:gravity="center"
         android:maxLines="1"

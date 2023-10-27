@@ -29,4 +29,20 @@ class DatabaseModule {
     @Provides
     @Singleton
     fun provideMoviesPopular(appDatabase: AppDatabase) = appDatabase.moviePopularDao()
+
+    @Provides
+    @Singleton
+    fun provideMoviesTopRated(appDatabase: AppDatabase) = appDatabase.movieTopRatedDao()
+
+    @Singleton
+    @Provides
+    fun provideMoviesUpcoming(appDatabase: AppDatabase) = appDatabase.movieUpcomingDao()
+
+    @Singleton
+    @Provides
+    fun provideMoviesTrending(appDatabase: AppDatabase) = appDatabase.movieTrendingDao()
+
+    @Singleton
+    @Provides
+    fun providePeopleTrending(appDatabase: AppDatabase) = appDatabase.peopleTrendingDao()
 }

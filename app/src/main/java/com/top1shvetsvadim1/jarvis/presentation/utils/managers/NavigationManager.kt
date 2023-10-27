@@ -19,15 +19,10 @@ object NavigationManager {
     fun setupWithNavController(
         navigationBarView: HubBottomNavigation,
         navController: NavController,
-        title: AppCompatTextView
+        onTabChanged: (Int) -> Unit = {}
     ) {
         navigationBarView.onTabChanged = { id ->
-            when(id){
-                R.id.fragmentHome -> title.text = "Home"
-                R.id.fragmentSearch -> title.text = "Search"
-                R.id.fragmentTickets -> title.text = "Tickets"
-                R.id.fragmentMyProfile -> title.text = "Profile"
-            }
+            onTabChanged(id)
             onNavDestinationSelected(
                 id,
                 navController

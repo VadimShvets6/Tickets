@@ -17,7 +17,7 @@ class RepositoryMoviesNowPlayingImpl @Inject constructor(
 ) : RepositoryMoviesNowPlaying {
 
     override suspend fun fetchListMoviesNowPlaying() {
-        val moviesNowPlayingList = remoteMovies.getMoviesNowPlaying(1).moviesNowPlaying
+        val moviesNowPlayingList = remoteMovies.getMoviesNowPlaying(1).moviesList
         movieNowPlayingDao.upsertMoviesNowPlayingList(
             moviesNowPlayingList.map { movie ->
                 MovieNowPlayingDDModel(

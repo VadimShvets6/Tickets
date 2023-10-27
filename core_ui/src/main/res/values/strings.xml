@@ -12,4 +12,16 @@
     <string name="key_start_watches_now">Готовы начать\n просмотр?</string>
     <string name="key_dialog_start_now_description">Введите адресс электронной почты, чтобы войти в свой аккаунт или создать его.</string>
     <string name="key_address_email">Адрес эл.почты</string>
+    <string name="key_home">Главная</string>
+    <string name="key_search">Поиск</string>
+    <string name="key_save">Сохраненное</string>
+    <string name="key_profile">Профиль</string>
+    <string name="key_now_playing">Сейчас в кино</string>
+    <string name="key_popular">Популярные</string>
+    <string name="key_top_rated">Высокий рейтинг</string>
+    <string name="key_genres">Жанры</string>
+    <string name="key_see_all">Посмотреть все</string>
+    <string name="key_upcoming">Предстоящие</string>
+    <string name="key_premiere">Премьера</string>
+    <string name="key_dayli_trending">Тренды дня</string>
 </resources>

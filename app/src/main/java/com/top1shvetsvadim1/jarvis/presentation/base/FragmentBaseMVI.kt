@@ -24,6 +24,7 @@ abstract class FragmentBaseMVI<VB : ViewBinding, S : State, E : Event, VM : View
     val currentState get() = viewModel.reducer.currentState
     protected val savedState: MutableMap<String, Any?> = mutableMapOf()
 
+
     /*inline fun <reified T : ViewModel> factoredViewModel(): Lazy<T> {
         return lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
             ViewModelProvider(this, viewModelFactory)[T::class.java]

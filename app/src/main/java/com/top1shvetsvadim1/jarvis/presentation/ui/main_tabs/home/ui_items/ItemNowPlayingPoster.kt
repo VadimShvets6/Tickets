@@ -9,6 +9,7 @@ import com.flexeiprata.novalles.annotations.NonUIProperty
 import com.flexeiprata.novalles.annotations.PrimaryTag
 import com.flexeiprata.novalles.annotations.UIModel
 import com.flexeiprata.novalles.interfaces.Instructor
+import com.top1shvetsvadim1.jarvis.R
 import com.top1shvetsvadim1.jarvis.databinding.ItemNowPlyaingPosterBinding
 import com.top1shvetsvadim1.jarvis.presentation.utils.extentions.toImageUrl
 import com.top1shvetsvadim1.jarvis.presentation.utils.recycler_utils.BaseUiModel
@@ -50,7 +51,9 @@ class ItemNowPlayingPosterDelegate :
         DelegateViewHolder<ItemNowPlayingPoster>(binding) {
 
         fun setPoster(poster: String) {
-            binding.posterImage.load(poster.toImageUrl())
+            binding.posterImage.load(poster.toImageUrl()){
+                placeholder(R.drawable.movie_poster_placeholder)
+            }
         }
 
         fun setVoteAverage(voteAverage: Double) {

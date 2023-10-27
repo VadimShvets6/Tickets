@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class MoviesResponseAPI(
     @SerializedName("results")
-    val moviesNowPlaying : List<MoviesAPI>
+    val moviesList : List<MoviesAPI>
 )
 
 data class MoviesGenreAPI(

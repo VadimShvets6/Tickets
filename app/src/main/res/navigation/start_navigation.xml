@@ -19,7 +19,19 @@
     <fragment
         android:id="@+id/fragmentMainTabHost3"
         android:name="com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.tabs.FragmentMainTabHost"
-        android:label="FragmentMainTabHost" />
+        android:label="FragmentMainTabHost" >
+        <action
+            android:id="@+id/toFragmentMovieDetails"
+            app:destination="@id/fragmentMovieDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentMovieDetails"
+        android:name="com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.details.FragmentMovieDetails"
+        android:label="FragmentMovieDetails" >
+        <argument
+            android:name="movieId"
+            app:argType="integer" />
+    </fragment>
 
 
     <!--<include app:graph="@navigation/main_navigation" />

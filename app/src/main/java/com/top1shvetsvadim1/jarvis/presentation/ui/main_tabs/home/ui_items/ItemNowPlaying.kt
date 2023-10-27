@@ -9,7 +9,10 @@ import com.flexeiprata.novalles.annotations.Instruction
 import com.flexeiprata.novalles.annotations.PrimaryTag
 import com.flexeiprata.novalles.annotations.UIModel
 import com.flexeiprata.novalles.interfaces.Instructor
+import com.top1shvetsvadim1.jarvis.common.Text
+import com.top1shvetsvadim1.jarvis.common.getStringText
 import com.top1shvetsvadim1.jarvis.databinding.ItemNowPlayingBinding
+import com.top1shvetsvadim1.jarvis.presentation.utils.extentions.capitalizeFirst
 import com.top1shvetsvadim1.jarvis.presentation.utils.extentions.setTextAnimation
 import com.top1shvetsvadim1.jarvis.presentation.utils.recycler_utils.BaseUiModel
 import com.top1shvetsvadim1.jarvis.presentation.utils.recycler_utils.DelegateAdapter
@@ -19,7 +22,7 @@ import com.top1shvetsvadim1.jarvis.presentation.utils.recycler_utils.ItemSimpleD
 @UIModel
 data class ItemNowPlayingBase(
     @PrimaryTag val tag: String,
-    val title: String,
+    val title: Text,
     val listImages: List<BaseUiModel>
 ) : BaseUiModel()
 
@@ -66,8 +69,8 @@ class ItemNowPlayingBaseDelegate :
             setTitle(item.title)
         }
 
-        fun setTitle(title: String) {
-            binding.title.text = title
+        fun setTitle(title: Text) {
+            binding.title.text = title.getStringText(context)
         }
 
         override fun setOnClickListeners(item: ItemNowPlayingBase) {
@@ -80,14 +83,14 @@ class ItemNowPlayingBaseDelegate :
             adapterImages.submitList(listImages)
             if (adapterImages.currentList.size > 0) {
                 binding.movieTitle.text =
-                    (adapterImages.currentList[0] as ItemNowPlayingPoster).titleMovie
+                    (adapterImages.currentList[binding.viewPager.currentItem] as ItemNowPlayingPoster).titleMovie
                 binding.genres.text =
-                    (adapterImages.currentList[0] as ItemNowPlayingPoster).genres
+                    (adapterImages.currentList[binding.viewPager.currentItem] as ItemNowPlayingPoster).genres.capitalizeFirst()
                 binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                     override fun onPageSelected(position: Int) {
                         binding.movieTitle.setTextAnimation((adapterImages.currentList[position] as ItemNowPlayingPoster).titleMovie)
                         binding.genres.setTextAnimation(
-                            (adapterImages.currentList[position] as ItemNowPlayingPoster).genres
+                            (adapterImages.currentList[position] as ItemNowPlayingPoster).genres.capitalizeFirst()
                         )
                     }
                 })

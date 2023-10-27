@@ -4,13 +4,21 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
+import com.example.coreutills.extentions.animateIsVisible
 import com.top1shvetsvadim1.jarvis.R
 import com.top1shvetsvadim1.jarvis.databinding.FragmentHomeBinding
 import com.top1shvetsvadim1.jarvis.presentation.base.FragmentBaseMVI
+import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.home.ui_items.ItemBaseMoviesDelegate
+import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.home.ui_items.ItemGenresDelegate
+import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.home.ui_items.ItemMovieHorizontalDelegate
 import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.home.ui_items.ItemNowPlayingBaseDelegate
-import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.home.ui_items.ItemPopularMoviesDelegate
+import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.tabs.FragmentMainTabHostDirections
 import com.top1shvetsvadim1.jarvis.presentation.utils.custo_views.SpaceDecorator
+import com.top1shvetsvadim1.jarvis.presentation.utils.recycler_utils.Action
 import com.top1shvetsvadim1.jarvis.presentation.utils.recycler_utils.DelegateAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,8 +27,10 @@ class FragmentHome : FragmentBaseMVI<FragmentHomeBinding, HomeState, HomeEvent, 
     override val viewModel: HomeViewModel by viewModels()
 
     private val adapterHome = DelegateAdapter.Builder()
-        .setDelegates(ItemNowPlayingBaseDelegate(), ItemPopularMoviesDelegate())
-        .setActionProcessor { }
+        .setDelegates(ItemNowPlayingBaseDelegate(), ItemBaseMoviesDelegate(), ItemGenresDelegate())
+        .setActionProcessor {
+            processAction(it)
+        }
         .build()
 
     override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentHomeBinding {
@@ -33,6 +43,8 @@ class FragmentHome : FragmentBaseMVI<FragmentHomeBinding, HomeState, HomeEvent, 
     }
 
     override fun render(state: HomeState) {
+        requireBinding().isLoading.isVisible = state.isLoading
+        requireBinding().recyclerView.animateIsVisible(!state.isLoading)
         adapterHome.submitList(state.items)
     }
 
@@ -44,7 +56,22 @@ class FragmentHome : FragmentBaseMVI<FragmentHomeBinding, HomeState, HomeEvent, 
 
     private fun initRecyclerView() {
         requireBinding().recyclerView.adapter = adapterHome
+        requireBinding().recyclerView.setRecycledViewPool(RecyclerView.RecycledViewPool())
         requireBinding().recyclerView.addItemDecoration(SpaceDecorator(requireContext(), R.dimen.default_margin))
+    }
+
+    private fun processAction(action: Action) {
+        fun processActionItemMovieHorizontal(action: ItemMovieHorizontalDelegate.ItemMovieHorizontalActions) {
+            when (action) {
+                is ItemMovieHorizontalDelegate.ItemMovieHorizontalActions.OnClickMovie ->{
+                    Log.d("deb", "click ${action.id}")
+                    navigateToAnimated(FragmentMainTabHostDirections.toFragmentMovieDetails(action.id))
+                }
+            }
+        }
+        when (action) {
+            is ItemMovieHorizontalDelegate.ItemMovieHorizontalActions -> processActionItemMovieHorizontal(action)
+        }
     }
 
 }

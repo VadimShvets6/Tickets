@@ -17,7 +17,7 @@ class RepositoryMoviesPopularImpl @Inject constructor(
 ) : RepositoryMoviesPopular {
 
     override suspend fun fetchMoviePopular() {
-        val moviesList = remoteMovies.getMoviesPopular(1).moviesNowPlaying
+        val moviesList = remoteMovies.getMoviesPopular(1).moviesList
         popularDao.upsertListMoviePopular(
             moviesList.map { movie ->
                 MoviePopularDB(
