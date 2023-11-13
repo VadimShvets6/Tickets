@@ -45,4 +45,10 @@ class DatabaseModule {
     @Singleton
     @Provides
     fun providePeopleTrending(appDatabase: AppDatabase) = appDatabase.peopleTrendingDao()
+    @Singleton
+    @Provides
+    fun provideMoviesDetails(appDatabase: AppDatabase) = appDatabase.moviesDetailsDao()
+    @Singleton
+    @Provides
+    fun provideMovieActors(appDatabase: AppDatabase) = appDatabase.movieActorsDao()
 }

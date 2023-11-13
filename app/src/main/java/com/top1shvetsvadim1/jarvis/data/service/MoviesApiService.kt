@@ -1,6 +1,8 @@
 package com.top1shvetsvadim1.jarvis.data.service
 
 import com.top1shvetsvadim1.jarvis.data.module.GenreResponse
+import com.top1shvetsvadim1.jarvis.data.module.MovieDetailsAPI
+import com.top1shvetsvadim1.jarvis.data.module.MoviesCastResponse
 import com.top1shvetsvadim1.jarvis.data.module.MoviesResponseAPI
 import com.top1shvetsvadim1.jarvis.data.module.PeopleResponse
 import com.top1shvetsvadim1.jarvis.presentation.utils.ApiValues
@@ -28,6 +30,7 @@ interface MoviesApiService {
     suspend fun getMoviesPopular(
         @Query("page") page: Int,
         @Query("language") language: String = CurrentUser.userLanguage,
+        @Query("region") region: String = CurrentUser.userLanguage,
         @Query("api_key") apiKey: String = ApiValues.API_KEY
     ): MoviesResponseAPI
 
@@ -59,4 +62,18 @@ interface MoviesApiService {
         @Query("language") language: String = CurrentUser.userLanguage,
         @Query("api_key") apiKey: String = ApiValues.API_KEY
     ): PeopleResponse
+
+    @GET("movie/{movie_id}")
+    suspend fun getMoviesDetailsById(
+        @Path("movie_id") id: Int,
+        @Query("language") language: String = CurrentUser.userLanguage,
+        @Query("api_key") apiKey: String = ApiValues.API_KEY
+    ): MovieDetailsAPI
+
+    @GET("movie/{movie_id}/credits")
+    suspend fun getMovieActorsById(
+        @Path("movie_id") id: Int,
+        @Query("language") language: String = CurrentUser.userLanguage,
+        @Query("api_key") apiKey: String = ApiValues.API_KEY
+    ) : MoviesCastResponse
 }

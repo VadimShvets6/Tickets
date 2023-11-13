@@ -24,7 +24,7 @@ data class ItemMovieHorizontal(
     @PrimaryTag val tag: String,
     val title: String,
     val voteAverage: Double,
-    val posterImage: String,
+    val posterImage: String?,
     val releaseData: String = "",
     val isUpcoming: Boolean = false,
     @NonUIProperty val id: Int
@@ -63,8 +63,8 @@ class ItemMovieHorizontalDelegate :
             binding.rating.text = String.format("%s/10 IMBd", voteAverage.roundToTwoDecimal().toString())
         }
 
-        fun setPosterImage(posterImage: String) {
-            binding.posterImage.load(posterImage.toImageUrl()) {
+        fun setPosterImage(posterImage: String?) {
+            binding.posterImage.load(posterImage?.toImageUrl()) {
                 placeholder(R.drawable.movie_poster_placeholder)
             }
         }

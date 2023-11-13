@@ -6,6 +6,7 @@ import com.top1shvetsvadim1.jarvis.presentation.controler.ContextManager.retriev
 import com.top1shvetsvadim1.jarvis.presentation.utils.extentions.launchIO
 import com.top1shvetsvadim1.jarvis.presentation.utils.storage.PropertiesStorage.Properties.PotentialUserEmailAddress
 import com.top1shvetsvadim1.jarvis.presentation.utils.storage.PropertiesStorage.Properties.UserLanguage
+import com.top1shvetsvadim1.jarvis.presentation.utils.storage.PropertiesStorage.Properties.ReadMoreClue
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -14,13 +15,14 @@ import kotlin.coroutines.coroutineContext
 
 object PropertiesStorage {
     enum class Properties {
-        PotentialUserEmailAddress, UserLanguage
+        PotentialUserEmailAddress, UserLanguage, ReadMoreClue
     }
 
     inline fun <reified T> Properties.default(): T {
         val def: Any = when (this) {
             PotentialUserEmailAddress -> ""
             UserLanguage -> Locale.getDefault().language
+            ReadMoreClue -> true
         }
         return if (def is T) def else throw Exception("Invalid default param")
     }

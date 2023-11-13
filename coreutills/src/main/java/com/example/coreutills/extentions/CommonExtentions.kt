@@ -39,4 +39,8 @@ inline fun <reified T> String.fromJSONTo(): T {
     return Gson().fromJson(this, T::class.java)
 }
 
+inline infix fun <reified T : Comparable<T>> T.constrainUp(upperLimit: T): T {
+    return if (this > upperLimit) upperLimit else this
+}
+
 val KClass<*>.nameTag get() = qualifiedName ?: ""

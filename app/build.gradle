@@ -119,6 +119,9 @@ dependencies {
     implementation 'androidx.media3:media3-transformer:1.1.1'
     implementation 'androidx.media3:media3-effect:1.1.1'
     implementation 'androidx.media3:media3-common:1.1.1'
+    implementation 'com.github.HaarigerHarald:android-youtubeExtractor:v2.1.0'
+
+    implementation("androidx.core:core-performance:1.0.0-alpha02")
 
     implementation project(path: ':core_ui')
 }

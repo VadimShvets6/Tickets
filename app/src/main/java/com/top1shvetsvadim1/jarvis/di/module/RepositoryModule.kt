@@ -1,6 +1,7 @@
 package com.top1shvetsvadim1.jarvis.di.module
 
 import com.top1shvetsvadim1.jarvis.data.impl.RepositoryGenresImpl
+import com.top1shvetsvadim1.jarvis.data.impl.RepositoryMoviesDetailsImpl
 import com.top1shvetsvadim1.jarvis.data.impl.RepositoryMoviesNowPlayingImpl
 import com.top1shvetsvadim1.jarvis.data.impl.RepositoryMoviesPopularImpl
 import com.top1shvetsvadim1.jarvis.data.impl.RepositoryMoviesTopRatedImpl
@@ -8,6 +9,7 @@ import com.top1shvetsvadim1.jarvis.data.impl.RepositoryMoviesUpcomingImpl
 import com.top1shvetsvadim1.jarvis.data.impl.RepositoryPeopleImpl
 import com.top1shvetsvadim1.jarvis.data.impl.RepositoryTrendingImpl
 import com.top1shvetsvadim1.jarvis.domain.repositories.RepositoryGenres
+import com.top1shvetsvadim1.jarvis.domain.repositories.RepositoryMoviesDetails
 import com.top1shvetsvadim1.jarvis.domain.repositories.RepositoryMoviesNowPlaying
 import com.top1shvetsvadim1.jarvis.domain.repositories.RepositoryMoviesPopular
 import com.top1shvetsvadim1.jarvis.domain.repositories.RepositoryMoviesTopRated
@@ -43,4 +45,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindRepositoryPeople(impl: RepositoryPeopleImpl): RepositoryPeople
+
+    @Binds
+    abstract fun bindRepositoryMoviesDetails(impl: RepositoryMoviesDetailsImpl): RepositoryMoviesDetails
 }

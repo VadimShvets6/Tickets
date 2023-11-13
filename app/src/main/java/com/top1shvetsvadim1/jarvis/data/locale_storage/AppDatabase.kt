@@ -5,9 +5,14 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.top1shvetsvadim1.jarvis.data.locale_storage.converts.ConvertsProductCompanies
 import com.top1shvetsvadim1.jarvis.data.locale_storage.converts.IntTypeConverts
 import com.top1shvetsvadim1.jarvis.data.locale_storage.genres.MovieGenreDB
 import com.top1shvetsvadim1.jarvis.data.locale_storage.genres.MovieGenreDao
+import com.top1shvetsvadim1.jarvis.data.locale_storage.movies_actors.MovieActorsDB
+import com.top1shvetsvadim1.jarvis.data.locale_storage.movies_actors.MoviesActorsDao
+import com.top1shvetsvadim1.jarvis.data.locale_storage.movies_details.MoviesDetailsDB
+import com.top1shvetsvadim1.jarvis.data.locale_storage.movies_details.MoviesDetailsDao
 import com.top1shvetsvadim1.jarvis.data.locale_storage.now_playing_storage.MovieNowPlayingDDModel
 import com.top1shvetsvadim1.jarvis.data.locale_storage.now_playing_storage.MovieNowPlayingDao
 import com.top1shvetsvadim1.jarvis.data.locale_storage.popular.MoviePopularDB
@@ -24,12 +29,13 @@ import com.top1shvetsvadim1.jarvis.data.locale_storage.upcoming.MoviesUpcomingDa
 
 @Database(
     entities = [MovieNowPlayingDDModel::class, MovieGenreDB::class, MoviePopularDB::class, MoviesTopRatedDB::class,
-        MovieUpcomingDB::class, MovieTrendDB::class, PeopleTrendDB::class],
-    version = 1,
+        MovieUpcomingDB::class, MovieTrendDB::class, PeopleTrendDB::class, MoviesDetailsDB::class, MovieActorsDB::class],
+    version = 2,
     exportSchema = true
 )
 @TypeConverters(
-    IntTypeConverts::class
+    IntTypeConverts::class,
+    ConvertsProductCompanies::class
 )
 abstract class AppDatabase : RoomDatabase() {
 
@@ -40,6 +46,8 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun movieUpcomingDao(): MoviesUpcomingDao
     abstract fun movieTrendingDao(): MovieTrendingDao
     abstract fun peopleTrendingDao(): PeopleTrendingDao
+    abstract fun moviesDetailsDao(): MoviesDetailsDao
+    abstract fun movieActorsDao(): MoviesActorsDao
 
     companion object {
         @Volatile

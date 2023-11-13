@@ -102,4 +102,9 @@
         <item name="android:textSize">@dimen/_10ssp</item>
         <item name="android:textColor">@color/c_dark_gray_727272_cacaca</item>
     </style>
+
+    <style name="ButtonText">
+        <item name="android:textSize">@dimen/_11ssp</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+    </style>
 </resources>

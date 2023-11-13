@@ -1,11 +1,13 @@
 package com.top1shvetsvadim1.jarvis.data.impl
 
+import android.util.Log
 import com.top1shvetsvadim1.jarvis.data.locale_storage.genres.MovieGenreDao
 import com.top1shvetsvadim1.jarvis.data.locale_storage.popular.MoviePopularDB
 import com.top1shvetsvadim1.jarvis.data.locale_storage.popular.MoviePopularDao
 import com.top1shvetsvadim1.jarvis.data.service.MoviesApiService
 import com.top1shvetsvadim1.jarvis.domain.models.HubMovieModel
 import com.top1shvetsvadim1.jarvis.domain.repositories.RepositoryMoviesPopular
+import com.top1shvetsvadim1.jarvis.presentation.utils.CurrentUser
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import javax.inject.Inject

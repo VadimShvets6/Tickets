@@ -63,6 +63,7 @@ class HomeViewModel @Inject constructor(
                     title = Text.Resource(R.string.key_now_playing),
                     listImages = model.movies.listNowPlaying.map {
                         ItemNowPlayingPoster(
+                            id = it.id,
                             tag = "poster_${it.posterImage}",
                             poster = it.posterImage,
                             titleMovie = it.movieName,

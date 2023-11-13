@@ -1,12 +1,10 @@
 package com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coreutills.extentions.animateIsVisible
 import com.top1shvetsvadim1.jarvis.R
@@ -16,6 +14,7 @@ import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.home.ui_items.ItemB
 import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.home.ui_items.ItemGenresDelegate
 import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.home.ui_items.ItemMovieHorizontalDelegate
 import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.home.ui_items.ItemNowPlayingBaseDelegate
+import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.home.ui_items.ItemNowPlayingPosterDelegate
 import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.tabs.FragmentMainTabHostDirections
 import com.top1shvetsvadim1.jarvis.presentation.utils.custo_views.SpaceDecorator
 import com.top1shvetsvadim1.jarvis.presentation.utils.recycler_utils.Action
@@ -63,14 +62,23 @@ class FragmentHome : FragmentBaseMVI<FragmentHomeBinding, HomeState, HomeEvent, 
     private fun processAction(action: Action) {
         fun processActionItemMovieHorizontal(action: ItemMovieHorizontalDelegate.ItemMovieHorizontalActions) {
             when (action) {
-                is ItemMovieHorizontalDelegate.ItemMovieHorizontalActions.OnClickMovie ->{
-                    Log.d("deb", "click ${action.id}")
+                is ItemMovieHorizontalDelegate.ItemMovieHorizontalActions.OnClickMovie -> {
                     navigateToAnimated(FragmentMainTabHostDirections.toFragmentMovieDetails(action.id))
                 }
             }
         }
+
+        fun processActionItemNowPlaying(action: ItemNowPlayingPosterDelegate.NowPlayingAction) {
+            when (action) {
+                is ItemNowPlayingPosterDelegate.NowPlayingAction.OnClick -> {
+                    navigateToAnimated(FragmentMainTabHostDirections.toFragmentMovieDetails(action.id))
+                }
+            }
+        }
+
         when (action) {
             is ItemMovieHorizontalDelegate.ItemMovieHorizontalActions -> processActionItemMovieHorizontal(action)
+            is ItemNowPlayingPosterDelegate.NowPlayingAction -> processActionItemNowPlaying(action)
         }
     }
 

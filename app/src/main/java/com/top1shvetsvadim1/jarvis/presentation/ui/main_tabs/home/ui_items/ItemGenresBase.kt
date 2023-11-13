@@ -1,6 +1,7 @@
 package com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.home.ui_items
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import com.flexeiprata.novalles.annotations.BindViewHolder
 import com.flexeiprata.novalles.annotations.Instruction
@@ -12,6 +13,7 @@ import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
+import com.top1shvetsvadim1.jarvis.R
 import com.top1shvetsvadim1.jarvis.common.Text
 import com.top1shvetsvadim1.jarvis.common.getStringText
 import com.top1shvetsvadim1.jarvis.databinding.ItemGenresBaseBinding
@@ -19,7 +21,7 @@ import com.top1shvetsvadim1.jarvis.presentation.utils.recycler_utils.Action
 import com.top1shvetsvadim1.jarvis.presentation.utils.recycler_utils.BaseUiModel
 import com.top1shvetsvadim1.jarvis.presentation.utils.recycler_utils.DelegateAdapter
 import com.top1shvetsvadim1.jarvis.presentation.utils.recycler_utils.DelegateViewHolder
-import com.top1shvetsvadim1.jarvis.presentation.utils.recycler_utils.ItemSimpleDelegate
+import com.top1shvetsvadim1.jarvis.presentation.utils.recycler_utils.ItemPrefetchDelegate
 
 @UIModel
 data class ItemGenresBase(
@@ -32,14 +34,16 @@ data class ItemGenresBase(
 @Instruction(ItemGenresBase::class)
 class ItemGenresInstructor : Instructor
 
-class ItemGenresDelegate : ItemSimpleDelegate<ItemGenresBase, ItemGenresDelegate.ItemGenresViewHolder>(
-    ItemGenresBase::class
+class ItemGenresDelegate : ItemPrefetchDelegate<ItemGenresBase, ItemGenresDelegate.ItemGenresViewHolder>(
+    ItemGenresBase::class,
+    R.layout.item_genres_base
 ) {
 
-    override fun createViewHolder(inflater: LayoutInflater, parent: ViewGroup): ItemGenresViewHolder {
-        return ItemGenresViewHolder(ItemGenresBaseBinding.inflate(inflater))
+    override fun createViewHolder(view: View): ItemGenresViewHolder {
+        return ItemGenresViewHolder(ItemGenresBaseBinding.bind(view))
     }
 
+    override val prefetchedViewsCount = 2
     override fun provideInstructor(holder: ItemGenresViewHolder, item: ItemGenresBase, payload: Any): Instructor {
         return ItemGenresInstructor()
     }
@@ -56,9 +60,12 @@ class ItemGenresDelegate : ItemSimpleDelegate<ItemGenresBase, ItemGenresDelegate
             .setActionProcessor(action)
             .build()
 
-        override fun bind(item: ItemGenresBase) {
+        init {
             initRecyclerView()
-            setItemList(item.listItems)
+        }
+
+        override fun bind(item: ItemGenresBase) {
+            setListItems(item.listItems)
             setTitle(item.title)
         }
 
@@ -66,7 +73,7 @@ class ItemGenresDelegate : ItemSimpleDelegate<ItemGenresBase, ItemGenresDelegate
             binding.title.text = title.getStringText(context)
         }
 
-        fun setItemList(listItems: List<BaseUiModel>) {
+        fun setListItems(listItems: List<BaseUiModel>) {
             adapterGenres.submitList(listItems)
         }
 
