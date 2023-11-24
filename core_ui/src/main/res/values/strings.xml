@@ -24,4 +24,7 @@
     <string name="key_upcoming">Предстоящие</string>
     <string name="key_premiere">Премьера</string>
     <string name="key_dayli_trending">Тренды дня</string>
+    <string name="key_continue">Продолжить</string>
+    <string name="key_description">Описание</string>
+    <string name="key_read_more">Читать дальше</string>
 </resources>

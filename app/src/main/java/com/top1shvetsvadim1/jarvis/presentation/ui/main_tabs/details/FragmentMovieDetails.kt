@@ -12,7 +12,6 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.graphics.ColorUtils
 import androidx.core.graphics.Insets
-import androidx.core.view.doOnPreDraw
 import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.viewModels
@@ -25,8 +24,9 @@ import com.example.coreutills.managers.ScreenManager
 import com.example.coreutills.wrappers.JobWrapper
 import com.top1shvetsvadim1.jarvis.R
 import com.top1shvetsvadim1.jarvis.databinding.FragmentMovieDetailsBinding
+import com.top1shvetsvadim1.jarvis.domain.models.MovieDetails
 import com.top1shvetsvadim1.jarvis.presentation.base.FragmentBaseMVI
-import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.home.ui_items.ItemPeople
+import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.details.ui_items.ItemDescriptionDelegate
 import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.home.ui_items.ItemPeopleDelegate
 import com.top1shvetsvadim1.jarvis.presentation.utils.extentions.capitalizeFirst
 import com.top1shvetsvadim1.jarvis.presentation.utils.extentions.dp
@@ -37,7 +37,6 @@ import com.top1shvetsvadim1.jarvis.presentation.utils.extentions.launchIO
 import com.top1shvetsvadim1.jarvis.presentation.utils.extentions.launchUI
 import com.top1shvetsvadim1.jarvis.presentation.utils.extentions.roundToTwoDecimal
 import com.top1shvetsvadim1.jarvis.presentation.utils.extentions.switchToUI
-import com.top1shvetsvadim1.jarvis.presentation.utils.recycler_utils.BaseUiModel
 import com.top1shvetsvadim1.jarvis.presentation.utils.recycler_utils.DelegateAdapter
 import com.top1shvetsvadim1.jarvis.presentation.utils.special.ConditionalSuspendBlock
 import com.top1shvetsvadim1.jarvis.presentation.utils.special.PerformanceManager
@@ -79,7 +78,7 @@ class FragmentMovieDetails :
     private var clueAnimator: ValueAnimator? = null
 
     private val adapter = DelegateAdapter.Builder()
-        .setDelegates(ItemPeopleDelegate())
+        .setDelegates(ItemDescriptionDelegate())
         .build()
 
     private val transitionListener by lazy {
@@ -124,7 +123,7 @@ class FragmentMovieDetails :
                             } ?: return@launchUI
                             elevation = 4.dp * progress
                             activity?.let {
-                                if(devicePerf.isHighPerformance()) {
+                                if (devicePerf.isHighPerformance()) {
                                     if (!it.isDarkMode()) {
                                         ScreenManager.setStatusBarContrast(it, progress >= 0.88f)
                                     } else {
@@ -208,7 +207,10 @@ class FragmentMovieDetails :
                                 false
                             }
                             motionLayout?.enableTransition(R.id.from_start_to_end, false)
-                            PropertiesStorage.setDropAsync(PropertiesStorage.Properties.ReadMoreClue, false)
+                            PropertiesStorage.setDropAsync(
+                                PropertiesStorage.Properties.ReadMoreClue,
+                                false
+                            )
                             onTransitionChange(motionLayout, R.id.end, R.id.FullyExpanded, 0f)
                         }
 
@@ -284,88 +286,8 @@ class FragmentMovieDetails :
 
     override fun render(state: MovieDetailsState) {
         applyOnBinding {
-            root.doOnPreDraw {
-                startPostponedEnterTransition()
-            }
             state.movieDetails?.let {
-                mainImageSrc.load(it.details.backdropPath) {
-                    placeholder(R.drawable.movie_poster_placeholder)
-                }
-                roundImageView.load(it.details.posterPath ?: R.drawable.movie_poster_placeholder) {
-                    placeholder(R.drawable.movie_poster_placeholder)
-                }
-                mainTitle.text = it.details.title
-                description.text = it.details.overview
-                mutableListOf(ratingDetails, rating).forEach { view ->
-                    view.text = String.format("%s/10 IMbd", it.details.voteAverage.roundToTwoDecimal())
-                }
-                mutableListOf(genres, genresDetails).forEach { view ->
-                    view.text = it.details.genres.joinToString(", ").capitalizeFirst()
-                }
-                mutableListOf(dataRelease, dataReleaseDetails).forEach { view ->
-                    view.text = it.details.releaseDate
-                }
-                mutableListOf(time, timeDetails).forEach { view ->
-                    view.text = String.format("%02d:%02d", it.details.runtime / 60, it.details.runtime % 60)
-                }
-            }
-            val list = mutableListOf<BaseUiModel>().apply {
-                add(
-                    ItemPeople(
-                        tag = "",
-                        name = "Vadim Shvets",
-                        position = 0,
-                        image = "https://image.tmdb.org/t/p/original/azD31DjpV3PJfjF3h72LVw2WCSD.jpg"
-                    )
-                )
-                add(
-                    ItemPeople(
-                        tag = "",
-                        name = "Vadim Shvets",
-                        position = 0,
-                        image = "https://image.tmdb.org/t/p/original/azD31DjpV3PJfjF3h72LVw2WCSD.jpg"
-                    )
-                )
-                add(
-                    ItemPeople(
-                        tag = "",
-                        name = "Vadim Shvets",
-                        position = 0,
-                        image = "https://image.tmdb.org/t/p/original/azD31DjpV3PJfjF3h72LVw2WCSD.jpg"
-                    )
-                )
-                add(
-                    ItemPeople(
-                        tag = "",
-                        name = "Vadim Shvets",
-                        position = 0,
-                        image = "https://image.tmdb.org/t/p/original/azD31DjpV3PJfjF3h72LVw2WCSD.jpg"
-                    )
-                )
-                add(
-                    ItemPeople(
-                        tag = "",
-                        name = "Vadim Shvets",
-                        position = 0,
-                        image = "https://image.tmdb.org/t/p/original/azD31DjpV3PJfjF3h72LVw2WCSD.jpg"
-                    )
-                )
-                add(
-                    ItemPeople(
-                        tag = "",
-                        name = "Vadim Shvets",
-                        position = 0,
-                        image = "https://image.tmdb.org/t/p/original/azD31DjpV3PJfjF3h72LVw2WCSD.jpg"
-                    )
-                )
-                add(
-                    ItemPeople(
-                        tag = "",
-                        name = "Vadim Shvets",
-                        position = 0,
-                        image = "https://image.tmdb.org/t/p/original/azD31DjpV3PJfjF3h72LVw2WCSD.jpg"
-                    )
-                )
+                setMoviesDetails(it.details)
             }
 
             renderConditionalSuspendBlock.action({ insets != Insets.NONE }) {
@@ -376,8 +298,36 @@ class FragmentMovieDetails :
                     root.rebuildScene()
                 }
             }
+            adapter.submitList(state.items) {
+                startPostponedEnterTransition()
+            }
+        }
+    }
 
-            adapter.submitList(list)
+    private fun setMoviesDetails(details: MovieDetails) {
+        applyOnBinding {
+            mainImageSrc.load(details.backdropPath) {
+                placeholder(R.drawable.movie_poster_placeholder)
+            }
+            roundImageView.load(details.posterPath ?: R.drawable.movie_poster_placeholder) {
+                placeholder(R.drawable.movie_poster_placeholder)
+            }
+            mainTitle.text = details.title
+            description.text = details.overview
+            mutableListOf(ratingDetails, rating).forEach { view ->
+                view.text =
+                    String.format("%s/10 IMbd", details.voteAverage.roundToTwoDecimal())
+            }
+            mutableListOf(genres, genresDetails).forEach { view ->
+                view.text = details.genres.joinToString(", ").capitalizeFirst()
+            }
+            mutableListOf(dataRelease, dataReleaseDetails).forEach { view ->
+                view.text = details.releaseDate
+            }
+            mutableListOf(time, timeDetails).forEach { view ->
+                view.text =
+                    String.format("%02d:%02d", details.runtime / 60, details.runtime % 60)
+            }
         }
     }
 
@@ -392,7 +342,8 @@ class FragmentMovieDetails :
             }
             clueWrapper reassign viewLifecycleOwner.lifecycleScope.launchIO {
                 delay(5000)
-                val isClueNeed = PropertiesStorage.get<Boolean>(PropertiesStorage.Properties.ReadMoreClue)
+                val isClueNeed =
+                    PropertiesStorage.get<Boolean>(PropertiesStorage.Properties.ReadMoreClue)
                 if (isClueNeed) {
                     switchToUI {
                         clueAnimator = AnimatorFactory.createSimpleFloatFactory(
@@ -412,7 +363,7 @@ class FragmentMovieDetails :
                 }
             }
             popUpContainer.setOnTouchListener { _, event ->
-               // PropertiesStorage.set(PropertiesStorage.Properties.ReadMoreClue, false)
+                // PropertiesStorage.set(PropertiesStorage.Properties.ReadMoreClue, false)
                 clueAnimator?.cancel()
                 root.onTouchEvent(event)
                 false
@@ -438,7 +389,10 @@ class FragmentMovieDetails :
         )
     }
 
-    override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentMovieDetailsBinding {
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentMovieDetailsBinding {
         return FragmentMovieDetailsBinding.inflate(inflater)
     }
 

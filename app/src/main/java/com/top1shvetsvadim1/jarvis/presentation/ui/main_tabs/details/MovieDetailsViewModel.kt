@@ -2,12 +2,20 @@ package com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.details
 
 import androidx.lifecycle.viewModelScope
 import com.example.coreutills.wrappers.JobWrapper
+import com.top1shvetsvadim1.jarvis.R
+import com.top1shvetsvadim1.jarvis.common.Text
+import com.top1shvetsvadim1.jarvis.domain.models.MoviesDetailsModel
 import com.top1shvetsvadim1.jarvis.domain.usecase.movies_details.FetchMovieDetailsScenario
 import com.top1shvetsvadim1.jarvis.domain.usecase.movies_details.GetMoviesDetailsScenario
 import com.top1shvetsvadim1.jarvis.presentation.base.Reducer
 import com.top1shvetsvadim1.jarvis.presentation.base.ViewModelBase
+import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.details.ui_items.ItemDescription
+import com.top1shvetsvadim1.jarvis.presentation.utils.extentions.addAsync
 import com.top1shvetsvadim1.jarvis.presentation.utils.extentions.launchIO
+import com.top1shvetsvadim1.jarvis.presentation.utils.recycler_utils.BaseUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
 import javax.inject.Inject
@@ -33,13 +41,26 @@ class MovieDetailsViewModel @Inject constructor(
                         getMoviesDetailsScenario(GetMoviesDetailsScenario.Params(intent.id)).distinctUntilChanged()
                             .collectLatest {
                                 reduceToState {
-                                    copy(movieDetails = it)
+                                    copy(movieDetails = it, items = mapDetailsItems(it).awaitAll())
                                 }
                             }
                     } catch (e: Exception) {
                         reducer.onError(e, GetMoviesDetailsScenario::class)
                     }
                 }
+            }
+        }
+    }
+
+    private suspend fun mapDetailsItems(model: MoviesDetailsModel): List<Deferred<BaseUiModel>> {
+        return mutableListOf<Deferred<BaseUiModel>>().apply {
+            addAsync {
+                ItemDescription(
+                    tag = "item_description",
+                    title = Text.Resource(R.string.key_description),
+                    description = model.details.overview,
+                    isEmptyOverview = model.details.overview.isEmpty()
+                )
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.top1shvetsvadim1.jarvis.data.service
 
+import com.top1shvetsvadim1.jarvis.data.module.ExternalMoviesAPI
 import com.top1shvetsvadim1.jarvis.data.module.GenreResponse
 import com.top1shvetsvadim1.jarvis.data.module.MovieDetailsAPI
 import com.top1shvetsvadim1.jarvis.data.module.MoviesCastResponse
@@ -76,4 +77,10 @@ interface MoviesApiService {
         @Query("language") language: String = CurrentUser.userLanguage,
         @Query("api_key") apiKey: String = ApiValues.API_KEY
     ) : MoviesCastResponse
+
+    @GET("movie/{movie_id}/external_ids")
+    suspend fun getMoviesExternal(
+        @Path("movie_id") id: Int,
+        @Query("api_key") apiKey: String = ApiValues.API_KEY
+    ) : ExternalMoviesAPI
 }

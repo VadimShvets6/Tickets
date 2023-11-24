@@ -1,6 +1,7 @@
 package com.top1shvetsvadim1.jarvis.domain.usecase.movies_details
 
 import com.top1shvetsvadim1.jarvis.domain.models.MoviesDetailsModel
+import com.top1shvetsvadim1.jarvis.domain.models.MoviesExternalModel
 import com.top1shvetsvadim1.jarvis.domain.repositories.RepositoryMoviesDetails
 import com.top1shvetsvadim1.jarvis.presentation.base.SuspendUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -19,17 +20,18 @@ class GetMoviesDetailsScenario @Inject constructor(
     @OptIn(ExperimentalCoroutinesApi::class)
     override suspend fun invoke(params: Params): Flow<MoviesDetailsModel> {
         val movieDetails = repositoryMoviesDetails.getMoviesById(params.id)
-        return movieDetails.filterNotNull().flatMapLatest {
+        return movieDetails.filterNotNull().flatMapLatest { details ->
             kotlinx.coroutines.flow.combine(
                 flowOf(null),
                 repositoryMoviesDetails.getMoviesActorsById(params.id)
             ) { moviesDetails, actors ->
                 MoviesDetailsModel(
-                    details = it,
+                    details = details,
                     reviews = listOf(),
                     actors = actors,
                     moviesTrailers = listOf(),
-                    similarMovies = listOf()
+                    similarMovies = listOf(),
+                    external = MoviesExternalModel(0,"", "", "", "", "")
                 )
             }
         }

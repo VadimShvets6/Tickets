@@ -9,4 +9,11 @@ fun Int.ssp(): Int {
     )
 }
 
+fun Int.sdp(): Int {
+    val context = ContextManager.retrieveApplicationContext()
+    return context.resources.getDimensionPixelSize(
+        context.resources.getIdentifier("_${this}sdp", "dimen", context.packageName)
+    )
+}
+val Int.sdp get() = this.sdp()
 val Int.ssp get() = this.ssp()

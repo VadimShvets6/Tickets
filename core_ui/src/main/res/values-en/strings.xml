@@ -25,4 +25,7 @@
     <string name="key_upcoming">Upcoming</string>
     <string name="key_premiere">Premiere</string>
     <string name="key_dayli_trending">Trends of the day</string>
+    <string name="key_continue">Continue</string>
+    <string name="key_description">Description</string>
+    <string name="key_read_more">Read more</string>
 </resources>

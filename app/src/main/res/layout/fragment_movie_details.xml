@@ -258,7 +258,7 @@
             android:background="@drawable/black_button"
             android:gravity="center"
             android:padding="@dimen/_12sdp"
-            android:text="Продолжить"
+            android:text="@string/key_continue"
             android:textColor="@color/color_FFFFFFFF_80000000" />
 
     </FrameLayout>

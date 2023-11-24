@@ -5,7 +5,8 @@ data class MoviesDetailsModel(
     val reviews: List<MovieReviewsModel>,
     val actors: List<ActorsModel>,
     val moviesTrailers: List<MoviesTrailersModel>,
-    val similarMovies: List<HubMovieModel>
+    val similarMovies: List<HubMovieModel>,
+    val external : MoviesExternalModel
 )
 
 data class MovieDetails(
@@ -60,4 +61,13 @@ data class MoviesTrailersModel(
     val name: String,
     val keyVideo: String,
     val size: Int
+)
+
+data class MoviesExternalModel(
+    val id: Int,
+    val imdbId: String,
+    val wikidataId: String,
+    val facebookId: String,
+    val instagramId: String,
+    val twitterId: String,
 )
