@@ -14,10 +14,13 @@ import com.top1shvetsvadim1.jarvis.domain.models.MovieDetails
 import com.top1shvetsvadim1.jarvis.domain.models.ProductCompaniesModel
 import com.top1shvetsvadim1.jarvis.domain.repositories.RepositoryMoviesDetails
 import com.top1shvetsvadim1.jarvis.presentation.utils.extentions.toImageUrl
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class RepositoryMoviesDetailsImpl @Inject constructor(
@@ -28,8 +31,16 @@ class RepositoryMoviesDetailsImpl @Inject constructor(
 ) : RepositoryMoviesDetails {
 
     override suspend fun fetchMoviesById(id: Int) {
-        insertMoviesDetailsInDB(remoteSource.getMoviesDetailsById(id))
-        insertMovieActorsDB(id, remoteSource.getMovieActorsById(id).moviesCasts)
+        withContext(Dispatchers.IO) {
+            val moviesDetails = async {
+                remoteSource.getMoviesDetailsById(id)
+            }
+            val moviesActors = async {
+                remoteSource.getMovieActorsById(id).moviesCasts
+            }
+            insertMoviesDetailsInDB(moviesDetails.await())
+            insertMovieActorsDB(id, moviesActors.await())
+        }
     }
 
     private fun insertMoviesDetailsInDB(moviesDetails: MovieDetailsAPI) {
@@ -49,6 +60,7 @@ class RepositoryMoviesDetailsImpl @Inject constructor(
                         companiesName = it.companiesName
                     )
                 },
+                productionCountries = moviesDetails.productionCountries.firstOrNull()?.nameCountry,
                 releaseDate = moviesDetails.releaseDate,
                 revenue = moviesDetails.revenue,
                 runtime = moviesDetails.runtime,
@@ -56,7 +68,9 @@ class RepositoryMoviesDetailsImpl @Inject constructor(
                 title = moviesDetails.title,
                 voteAverage = moviesDetails.voteAverage,
                 voteCount = moviesDetails.voteCount,
-                backdropPath = moviesDetails.backdropPath
+                backdropPath = moviesDetails.backdropPath,
+                originalTitle = moviesDetails.originalTitle,
+                originalLanguage = moviesDetails.originalLanguage
             )
         )
     }
@@ -104,7 +118,10 @@ class RepositoryMoviesDetailsImpl @Inject constructor(
                 title = movieDetails.title,
                 voteAverage = movieDetails.voteAverage,
                 voteCount = movieDetails.voteCount,
-                backdropPath = movieDetails.backdropPath?.toImageUrl()
+                backdropPath = movieDetails.backdropPath?.toImageUrl(),
+                countryOfOrigin = movieDetails.productionCountries,
+                originalTitle = movieDetails.originalTitle,
+                originalLanguage = movieDetails.originalLanguage
             )
         }
     }

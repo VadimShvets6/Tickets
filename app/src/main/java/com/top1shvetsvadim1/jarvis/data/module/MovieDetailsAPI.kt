@@ -21,6 +21,8 @@ data class MovieDetailsAPI(
     val posterPath: String,
     @SerializedName("production_companies")
     val productionCompanies: List<ProductCompaniesAPI>,
+    @SerializedName("production_countries")
+    val productionCountries : List<ProductCountriesAPI>,
     @SerializedName("release_date")
     val releaseDate: String,
     @SerializedName("revenue")
@@ -34,5 +36,9 @@ data class MovieDetailsAPI(
     @SerializedName("vote_average")
     val voteAverage: Double,
     @SerializedName("vote_count")
-    val voteCount: Int
+    val voteCount: Int,
+    @SerializedName("original_title")
+    val originalTitle: String,
+    @SerializedName("original_language")
+    val originalLanguage: String
 )

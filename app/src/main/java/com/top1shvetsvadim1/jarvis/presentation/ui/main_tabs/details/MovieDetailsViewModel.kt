@@ -10,6 +10,7 @@ import com.top1shvetsvadim1.jarvis.domain.usecase.movies_details.GetMoviesDetail
 import com.top1shvetsvadim1.jarvis.presentation.base.Reducer
 import com.top1shvetsvadim1.jarvis.presentation.base.ViewModelBase
 import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.details.ui_items.ItemDescription
+import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.details.ui_items.ItemGeneralInformation
 import com.top1shvetsvadim1.jarvis.presentation.utils.extentions.addAsync
 import com.top1shvetsvadim1.jarvis.presentation.utils.extentions.launchIO
 import com.top1shvetsvadim1.jarvis.presentation.utils.recycler_utils.BaseUiModel
@@ -54,6 +55,19 @@ class MovieDetailsViewModel @Inject constructor(
 
     private suspend fun mapDetailsItems(model: MoviesDetailsModel): List<Deferred<BaseUiModel>> {
         return mutableListOf<Deferred<BaseUiModel>>().apply {
+            // Item general information
+            addAsync {
+                ItemGeneralInformation(
+                    tag = "item_general_information",
+                    originalTitle = model.details.originalTitle,
+                    originalLanguage = model.details.originalLanguage,
+                    budget = model.details.budged,
+                    revenue = model.details.revenue,
+                    country = model.details.countryOfOrigin
+                )
+            }
+
+            // Item description
             addAsync {
                 ItemDescription(
                     tag = "item_description",

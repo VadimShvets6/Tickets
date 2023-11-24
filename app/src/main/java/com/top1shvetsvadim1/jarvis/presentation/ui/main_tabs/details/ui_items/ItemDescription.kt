@@ -99,7 +99,7 @@ class ItemDescriptionDelegate :
                 AnimatorFactory.startSimpleFactory(
                     view = binding.description,
                     component = AnimatorFactory.AnimatorComponent(binding.description.height, measurements * 2),
-                    duration = 400,
+                    duration = 300,
                     interpolator = LinearInterpolator(),
                     postConfiguration = {
                         doOnEnd {

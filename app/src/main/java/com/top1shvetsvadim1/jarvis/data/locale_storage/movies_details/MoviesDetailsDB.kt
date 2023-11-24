@@ -21,13 +21,16 @@ data class MoviesDetailsDB(
     val popularity: Double,
     val posterPath: String?,
     @TypeConverters(ConvertsProductCompanies::class) val productionCompanies: List<ProductCompaniesDB>,
+    val productionCountries: String?,
     val releaseDate: String,
     val revenue: Long,
     val runtime: Int,
     val status: String,
     val title: String,
     val voteAverage: Double,
-    val voteCount: Int
+    val voteCount: Int,
+    val originalTitle: String,
+    val originalLanguage: String
 )
 
 data class ProductCompaniesDB(

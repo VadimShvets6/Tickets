@@ -27,4 +27,10 @@
     <string name="key_continue">Продолжить</string>
     <string name="key_description">Описание</string>
     <string name="key_read_more">Читать дальше</string>
+    <string name="key_general_information">Основная информация</string>
+    <string name="key_original_title">Исходное название:</string>
+    <string name="key_production_country">Страна производства:</string>
+    <string name="key_original_language">Исходный язык:</string>
+    <string name="key_budget">Бюджет:</string>
+    <string name="key_revenue">Доход:</string>
 </resources>

@@ -10,3 +10,8 @@ data class ProductCompaniesAPI(
     @SerializedName("name")
     val companiesName: String,
 )
+
+data class ProductCountriesAPI(
+    @SerializedName("name")
+    val nameCountry : String
+)

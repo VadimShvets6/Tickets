@@ -25,7 +25,10 @@ data class MovieDetails(
     val status: String,
     val title: String,
     val voteAverage: Double,
-    val voteCount: Int
+    val voteCount: Int,
+    val countryOfOrigin: String?,
+    val originalTitle: String,
+    val originalLanguage: String
 )
 
 data class ProductCompaniesModel(
