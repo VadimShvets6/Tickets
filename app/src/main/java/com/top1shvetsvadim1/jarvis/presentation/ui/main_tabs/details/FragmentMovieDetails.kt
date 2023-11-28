@@ -31,6 +31,7 @@ import com.top1shvetsvadim1.jarvis.domain.models.MovieDetails
 import com.top1shvetsvadim1.jarvis.presentation.base.FragmentBaseMVI
 import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.details.ui_items.ItemDescriptionDelegate
 import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.details.ui_items.ItemGeneralInformationDelegate
+import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.details.ui_items.ItemMoviesCastsDelegate
 import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.home.ui_items.ItemPeopleDelegate
 import com.top1shvetsvadim1.jarvis.presentation.utils.custo_views.SpaceDecorator
 import com.top1shvetsvadim1.jarvis.presentation.utils.experemental.sdp
@@ -84,7 +85,7 @@ class FragmentMovieDetails :
     private var clueAnimator: ValueAnimator? = null
 
     private val adapter = DelegateAdapter.Builder()
-        .setDelegates(ItemDescriptionDelegate(), ItemGeneralInformationDelegate())
+        .setDelegates(ItemDescriptionDelegate(), ItemGeneralInformationDelegate(), ItemMoviesCastsDelegate())
         .build()
 
     private val transitionListener by lazy {

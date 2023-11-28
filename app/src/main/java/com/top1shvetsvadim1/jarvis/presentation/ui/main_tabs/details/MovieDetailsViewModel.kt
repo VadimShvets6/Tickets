@@ -9,8 +9,10 @@ import com.top1shvetsvadim1.jarvis.domain.usecase.movies_details.FetchMovieDetai
 import com.top1shvetsvadim1.jarvis.domain.usecase.movies_details.GetMoviesDetailsScenario
 import com.top1shvetsvadim1.jarvis.presentation.base.Reducer
 import com.top1shvetsvadim1.jarvis.presentation.base.ViewModelBase
+import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.details.ui_items.ItemCast
 import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.details.ui_items.ItemDescription
 import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.details.ui_items.ItemGeneralInformation
+import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.details.ui_items.ItemMovieCasts
 import com.top1shvetsvadim1.jarvis.presentation.utils.extentions.addAsync
 import com.top1shvetsvadim1.jarvis.presentation.utils.extentions.launchIO
 import com.top1shvetsvadim1.jarvis.presentation.utils.recycler_utils.BaseUiModel
@@ -74,6 +76,21 @@ class MovieDetailsViewModel @Inject constructor(
                     title = Text.Resource(R.string.key_description),
                     description = model.details.overview,
                     isEmptyOverview = model.details.overview.isEmpty()
+                )
+            }
+
+            //Item cast
+            addAsync {
+                ItemMovieCasts(
+                    tag = "item_movie_cast",
+                    listCasts = model.actors.map {
+                        ItemCast(
+                            tag = "cast_${it.castId}",
+                            name = it.name,
+                            characterName = it.characterName,
+                            image = it.profilePath
+                        )
+                    }
                 )
             }
         }

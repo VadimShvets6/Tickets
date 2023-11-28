@@ -33,4 +33,5 @@
     <string name="key_original_language">Исходный язык:</string>
     <string name="key_budget">Бюджет:</string>
     <string name="key_revenue">Доход:</string>
+    <string name="key_casts">Актерский состав</string>
 </resources>
