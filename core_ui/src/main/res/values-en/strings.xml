@@ -35,4 +35,7 @@
     <string name="key_budget">Budget:</string>
     <string name="key_revenue">Revenue:</string>
     <string name="key_casts">Cast</string>
+    <string name="key_rating">Rating</string>
+    <string name="key_no_one_rated">No one has rated this movie yet</string>
+    <string name="n_rates">%s rates</string>
 </resources>

@@ -30,7 +30,7 @@ import com.top1shvetsvadim1.jarvis.data.locale_storage.upcoming.MoviesUpcomingDa
 @Database(
     entities = [MovieNowPlayingDDModel::class, MovieGenreDB::class, MoviePopularDB::class, MoviesTopRatedDB::class,
         MovieUpcomingDB::class, MovieTrendDB::class, PeopleTrendDB::class, MoviesDetailsDB::class, MovieActorsDB::class],
-    version = 3,
+    version = 4,
     exportSchema = false
 )
 @TypeConverters(

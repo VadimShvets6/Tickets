@@ -7,13 +7,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Choreographer
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.graphics.ColorUtils
 import androidx.core.graphics.Insets
-import androidx.core.view.doOnPreDraw
 import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
@@ -32,9 +30,8 @@ import com.top1shvetsvadim1.jarvis.presentation.base.FragmentBaseMVI
 import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.details.ui_items.ItemDescriptionDelegate
 import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.details.ui_items.ItemGeneralInformationDelegate
 import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.details.ui_items.ItemMoviesCastsDelegate
-import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.home.ui_items.ItemPeopleDelegate
+import com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.details.ui_items.ItemRatingDelegate
 import com.top1shvetsvadim1.jarvis.presentation.utils.custo_views.SpaceDecorator
-import com.top1shvetsvadim1.jarvis.presentation.utils.experemental.sdp
 import com.top1shvetsvadim1.jarvis.presentation.utils.extentions.capitalizeFirst
 import com.top1shvetsvadim1.jarvis.presentation.utils.extentions.dp
 import com.top1shvetsvadim1.jarvis.presentation.utils.extentions.getColorCompat
@@ -85,7 +82,12 @@ class FragmentMovieDetails :
     private var clueAnimator: ValueAnimator? = null
 
     private val adapter = DelegateAdapter.Builder()
-        .setDelegates(ItemDescriptionDelegate(), ItemGeneralInformationDelegate(), ItemMoviesCastsDelegate())
+        .setDelegates(
+            ItemDescriptionDelegate(),
+            ItemGeneralInformationDelegate(),
+            ItemMoviesCastsDelegate(),
+            ItemRatingDelegate()
+        )
         .build()
 
     private val transitionListener by lazy {
@@ -306,8 +308,8 @@ class FragmentMovieDetails :
                     root.rebuildScene()
                 }
             }
-            adapter.submitList(state.items){
-                if(state.items.isNotEmpty()){
+            adapter.submitList(state.items) {
+                if (state.items.isNotEmpty()) {
                     startPostponedEnterTransition()
                 }
             }

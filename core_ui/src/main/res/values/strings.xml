@@ -34,4 +34,7 @@
     <string name="key_budget">Бюджет:</string>
     <string name="key_revenue">Доход:</string>
     <string name="key_casts">Актерский состав</string>
+    <string name="key_rating">Рейтинг</string>
+    <string name="key_no_one_rated">Никто еще не оценил этот фильм</string>
+    <string name="n_rates">%s оценок</string>
 </resources>

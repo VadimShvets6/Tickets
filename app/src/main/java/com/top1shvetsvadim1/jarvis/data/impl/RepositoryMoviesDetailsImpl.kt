@@ -18,6 +18,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
@@ -127,8 +128,8 @@ class RepositoryMoviesDetailsImpl @Inject constructor(
     }
 
     override suspend fun getMoviesActorsById(id: Int): Flow<List<ActorsModel>> {
-        return moviesActorsDao.getMovieActorsById(id).map {
-            it.map { actor ->
+        return moviesActorsDao.getMovieActorsById(id).map { listActors ->
+            listActors.filter { it.profilePath != null }.map { actor ->
                 ActorsModel(
                     adult = actor.adult,
                     id = actor.actorId,

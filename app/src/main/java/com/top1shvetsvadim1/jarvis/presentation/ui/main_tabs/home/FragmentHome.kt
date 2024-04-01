@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coreutills.extentions.animateIsVisible
 import com.top1shvetsvadim1.jarvis.R
@@ -44,7 +45,7 @@ class FragmentHome : FragmentBaseMVI<FragmentHomeBinding, HomeState, HomeEvent, 
     override fun render(state: HomeState) {
         requireBinding().isLoading.isVisible = state.isLoading
         requireBinding().recyclerView.animateIsVisible(!state.isLoading)
-        adapterHome.submitList(state.items)
+        adapterHome.submitListChunked(state.items, lifecycleScope)
     }
 
     override fun applyOnViews(): FragmentHomeBinding.() -> Unit {

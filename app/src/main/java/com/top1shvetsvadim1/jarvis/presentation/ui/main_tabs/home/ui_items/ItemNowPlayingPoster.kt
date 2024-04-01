@@ -60,7 +60,7 @@ class ItemNowPlayingPosterDelegate :
         }
 
         fun setVoteAverage(voteAverage: Double) {
-            binding.ratingCount.text = voteAverage.roundToTwoDecimal().toString()
+            binding.ratingCount.text = voteAverage.roundToTwoCuDecimal().toString()
         }
 
         override fun setOnClickListeners(item: ItemNowPlayingPoster) {
