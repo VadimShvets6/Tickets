@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/start_navigation"
+    app:startDestination="@id/fragmentWelcome">
+
+    <fragment
+        android:id="@+id/fragmentWelcome"
+        android:name="com.top1shvetsvadim1.jarvis.presentation.ui.preview.FragmentWelcome"
+        android:label="FragmentWelcome" >
+        <action
+            android:id="@+id/action_fragmentWelcome_to_fragmentMainTabHost3"
+            app:destination="@id/fragmentMainTabHost3"
+            app:enterAnim="@anim/h_fragment_enter_horrizontal"
+            app:exitAnim="@anim/h_fragment_pop_exit_horrizontal"
+            app:popEnterAnim="@anim/h_fragment_pop_enter_horrizontal"
+            app:popExitAnim="@anim/h_fragment_exit_horrizontal" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentMainTabHost3"
+        android:name="com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.tabs.FragmentMainTabHost"
+        android:label="FragmentMainTabHost" >
+        <action
+            android:id="@+id/toFragmentMovieDetails"
+            app:destination="@id/fragmentMovieDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentMovieDetails"
+        android:name="com.top1shvetsvadim1.jarvis.presentation.ui.main_tabs.details.FragmentMovieDetails"
+        android:label="FragmentMovieDetails" >
+        <argument
+            android:name="movieId"
+            app:argType="integer" />
+    </fragment>
+
+
+    <!--<include app:graph="@navigation/main_navigation" />
+    <action
+        android:id="@+id/toMainNavigation3"
+        app:destination="@id/main_navigation" />-->
+
+
+</navigation>

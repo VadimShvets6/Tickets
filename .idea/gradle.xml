@@ -13,9 +13,11 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/core_ui" />
-            <option value="$PROJECT_DIR$/coreutils" />
+            <option value="$PROJECT_DIR$/coreutills" />
+            <option value="$PROJECT_DIR$/designsystem" />
           </set>
         </option>
+        <option name="resolveExternalAnnotations" value="false" />
       </GradleProjectSettings>
     </option>
   </component>

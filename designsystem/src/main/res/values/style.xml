@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize20Dp" parent="">
+        <item name="cornerSize">20dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize10Dp" parent="">
+        <item name="cornerSize">10dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize10DpPlus" parent="">
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize20DpBottom" parent="">
+        <item name="cornerSizeBottomLeft">20dp</item>
+        <item name="cornerSizeBottomRight">20dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize20DpTop" parent="">
+        <item name="cornerSizeTopLeft">20dp</item>
+        <item name="cornerSizeTopRight">20dp</item>
+    </style>
+
+    <style name="Me.Text.InputText.Regular" parent="">
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:textColor">@color/c_black_text_000000_fafafa</item>
+    </style>
+
+    <style name="Me.Text.InputText.Title" parent="">
+        <item name="fontFamily">@font/roboto_bold</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:textColor">@color/c_black_text_000000_fafafa</item>
+    </style>
+
+    <style name="Me.Text.Title" parent="">
+        <item name="fontFamily">@font/roboto_bold</item>
+        <item name="android:textSize">@dimen/_15ssp</item>
+        <item name="android:textColor">@color/c_black_text_000000_fafafa</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="Me.Text.CTA" parent="">
+        <item name="fontFamily">@font/roboto_bold</item>
+        <item name="android:textSize">@dimen/_11ssp</item>
+        <item name="android:textColor">@color/c_me_blue_0091ff_5ca3f8</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="Me.Text.SCTA" parent="">
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:textColor">@color/c_me_blue_0091ff_5ca3f8</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="Me.Text.InputText.Hint" parent="">
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:textColor">@color/c_silver_c2c2c2</item>
+    </style>
+
+    <style name="Me.Text.Regular" parent="">
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textSize">@dimen/_11ssp</item>
+        <item name="android:textColor">@color/c_dark_gray_727272_cacaca</item>
+    </style>
+
+    <style name="Me.Text.Regular.Bright" parent="">
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textSize">@dimen/_11ssp</item>
+        <item name="android:textColor">@color/c_bright_gray_727272_fafafa</item>
+    </style>
+
+    <style name="Me.Text.Example" parent="">
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textSize">@dimen/_10ssp</item>
+        <item name="android:textColor">@color/c_darker_gray_7b7b7b_cacaca</item>
+    </style>
+
+    <style name="Me.Text.Error" parent="">
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textSize">@dimen/_7ssp</item>
+        <item name="android:textColor">@color/c_error_ff0000</item>
+    </style>
+
+    <style name="Me.Text.TextButton" parent="">
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textSize">@dimen/_11ssp</item>
+        <item name="android:textColor">@color/c_black_text_000000_fafafa</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="Me.Text.InputText.Counters" parent="">
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textSize">@dimen/_10ssp</item>
+        <item name="android:textColor">@color/c_dark_gray_727272_cacaca</item>
+    </style>
+
+    <style name="ButtonText">
+        <item name="android:textSize">@dimen/_11ssp</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+    </style>
+</resources>

@@ -10,9 +10,11 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
 }
-rootProject.name = "J.A.R.V.I.S"
+rootProject.name = "Movie Ticket Hub"
 include ':app'
 include ':core_ui'
-include ':coreutils'
+include ':coreutills'
+include ':designsystem'
